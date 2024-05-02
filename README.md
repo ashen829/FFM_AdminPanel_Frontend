@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TailAdmin - Free Tailwind Admin Dashboard Template
 TailAdmin is a high-quality, open-source, and **free Tailwind CSS admin template** that is perfect for creating data-rich backends, 
 powerful web applications and dashboard-admin projects.
@@ -83,3 +84,6 @@ attribution or credits.
 
 If you're in search of a top-notch Tailwind CSS admin and dashboard template that comprises all the necessary dashboard elements and functionalities, TailAdmin is an ideal option for you.
 
+=======
+# FFM_AdminPanel_Frontend
+>>>>>>> 7ee89347981d2db04d897abe25992e47849d5c2f
