@@ -14,6 +14,7 @@
           $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
   >
+  
     <!-- ===== Preloader Start ===== -->
     <include src="./partials/preloader.html"></include>
     <!-- ===== Preloader End ===== -->
@@ -40,7 +41,7 @@
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                Tables
+                Oders
               </h2>
 
               <nav>
@@ -56,17 +57,17 @@
 
             <!-- ====== Table Section Start -->
             <div class="flex flex-col gap-10">
-              <!-- ====== Table One Start -->
-              <include src="./partials/table-01.html" />
-              <!-- ====== Table One End -->
-
-              <!-- ====== Table Two Start -->
-              <include src="./partials/table-02.html" />
-              <!-- ====== Table Two End -->
 
               <!-- ====== Table Three Start -->
               <include src="./partials/table-03.html" />
               <!-- ====== Table Three End -->
+
+              <!-- ====== Table One Start -->
+              <include src="./partials/table-01.html" />
+              <!-- ====== Table One End -->
+
+
+
             </div>
             <!-- ====== Table Section End -->
           </div>
