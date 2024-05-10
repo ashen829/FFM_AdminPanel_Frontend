@@ -1,6 +1,6 @@
-<div
-  class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
->
+<div x-data="{ rows: [] }"> 
+
+<div class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 
   <div class="flex flex-col">
     <div
@@ -23,9 +23,8 @@
       </div>
     </div>
     <!-- Row 1 -->
-    <div
-      class="grid grid-cols-6 border-b border-stroke dark:border-strokedark sm:grid-cols-6"
-    >
+    <template x-for="(row, index) in rows" :key="index">
+    <div class="grid grid-cols-6 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
         <!-- Row 01 - Add Color -->
       <div class="flex items-center gap-3 p-2.5 xl:p-5">
         <div
@@ -36,6 +35,7 @@
           class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           :class="isOptionSelected && 'text-black dark:text-white'"
           @change="isOptionSelected = true"
+          x-model="row.color"
         >
           <option value="" class="text-body">
             Select Color
@@ -80,6 +80,7 @@
               class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
               :class="isOptionSelected && 'text-black dark:text-white'"
               @change="isOptionSelected = true"
+              x-model="row.size"
             >
               <option value="" class="text-body">
                 Select Size
@@ -127,7 +128,8 @@
           type="text"
           placeholder="LKR"
           class="w-full rounded border-[1.5px] border-stroke bg-transparent px-2.5 py-1.5 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-        />
+          x-model="row.price"
+          />
 
           </div>
           </div>
@@ -137,23 +139,11 @@
             <input
               type="number"
               class="w-30 rounded border-[1.5px] border-stroke bg-transparent px-2.5 py-1.5 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-              x-model="variant.numItems"
+              x-model="row.numItems"
             />
         </div>
 
         <!-- Row 01 - Images -->
-        
-        <!-- <div class="flex items-center justify-center w-full">
-          <label for="dropzone-file-1" class="flex flex-col items-center justify-center w-full h-10 border-2 border-stroke border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100  dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
-            <div id="dropzone-area-1" class="flex flex-row items-center gap-3 justify-center pt-5 pb-6">
-              <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">          
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-              </svg>
-              <p class=" text-sm text-gray-500 dark:text-gray-400 font-semibold">Click to upload</p>
-            </div>
-            <input id="dropzone-file-1" type="file" class="hidden" accept="image/*" />
-          </label>
-        </div>   -->
 
         <div class="flex  items-center justify-center w-full">
           <label for="dropzone-file-1" class="flex flex-col items-center justify-center w-full h-10 border-2 border-stroke border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
@@ -163,7 +153,9 @@
               </svg>
               <p class="text-sm text-gray-500 dark:text-gray-400 font-semibold">Click to upload</p>
             </div>
-            <input class="flex flex-row" id="dropzone-file-1" type="file" class="hidden" accept="image/*" multiple /> <!-- Allow multiple files -->
+            <input class="flex flex-row" id="dropzone-file-1" type="file" class="hidden" accept="image/*" multiple 
+            x-model="row.images"
+            /> <!-- Allow multiple files -->
           </label>
         </div>
         
@@ -195,32 +187,11 @@
             }
           });
         </script>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+                
         <!-- Delete Button -->
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
-                <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2">
+                <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2"
+                @click = "rows.splice(index, 1)">
                   <!-- SVG Icon -->
                   <svg class="w-[20px] h-[20px] text-red-800 hover:text-red-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z" clip-rule="evenodd"/>
@@ -230,9 +201,11 @@
                 </button>
                 
         </div>
-      </div>
+  </div>
+    </template>
         <!-- Add New Row Button -->
-        <div class="p-5 flex justify-center">
+        <div class="p-5 flex justify-center"
+        @click="rows.push({ color: '', size: '', price: '', numItems: 1, images:'' })">
           <button
             class="rounded-full bg-primary text-white p-4"
             @click="addRow"
@@ -252,38 +225,8 @@
             </svg>
           </button>
         </div>
+      </div>
   </div>
 </div>
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.2" defer></script>
-
-<!-- <script>
-  document.getElementById('dropzone-file-1').addEventListener('change', function(event) {
-    const file = event.target.files[0]; // Get the first selected file
-  
-    if (file) {
-      const reader = new FileReader();
-      
-      reader.onload = function(e) {
-        const imageUrl = e.target.result; // Get the image data URL
-        
-        const dropzoneArea = document.getElementById('dropzone-area-1'); // The div containing the upload elements
-        dropzoneArea.innerHTML = ''; // Clear the existing content
-        
-        // Create the image element and set the source to the uploaded image
-        const imageElement = document.createElement('img');
-        imageElement.src = imageUrl; // Set the image source
-        imageElement.alt = 'Uploaded Image'; // Alternative text for accessibility
-        imageElement.className = 'w-full h-4 object-fit rounded-lg'; // Styling for the displayed image
-        
-        dropzoneArea.appendChild(imageElement); // Add the image to the dropzone area
-      };
-      
-      reader.readAsDataURL(file); // Read the file and trigger the onload event
-    }
-  });
-  
-  
-  </script> -->
