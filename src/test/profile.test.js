@@ -6,11 +6,17 @@ const html = fs.readFileSync(path.resolve(__dirname, '../profile.html'), 'utf8')
 
 
 describe('Profile Page', () => {
-    
+
   // Test for document title
   test('document title is "Profile"', () => {
     document.documentElement.innerHTML = html;
     expect(document.title).toBe('Profile');
+  });
+
+  test('Link Destination Test', () => {
+    document.documentElement.innerHTML = html;
+    const link = document.querySelector('a.font-medium');
+    expect(link.href).toMatch(/index\.html$/);
   });
 
   // Test for elements existence
@@ -73,4 +79,7 @@ describe('Social Media Icons Section', () => {
     });
   
   });
-  
+
+
+
+
