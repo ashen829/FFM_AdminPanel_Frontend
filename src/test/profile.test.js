@@ -1,11 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-// Load the HTML file
+
 const html = fs.readFileSync(path.resolve(__dirname, '../profile.html'), 'utf8');
 
 
 describe('Profile Page', () => {
+    
   // Test for document title
   test('document title is "Profile"', () => {
     document.documentElement.innerHTML = html;
