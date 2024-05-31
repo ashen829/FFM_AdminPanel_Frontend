@@ -10,12 +10,10 @@ describe('Add Brand Page', () => {
     });
 
     test('Page renders without errors', () => {
-        // Check if the page renders without errors
         expect(document.documentElement).not.toBeNull();
     });
 
     test('All form inputs are present', () => {
-        // Check if all form inputs are present
         const formInputs = document.querySelectorAll('form input');
         expect(formInputs.length).toBeGreaterThan(0);
     });

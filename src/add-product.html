@@ -7,6 +7,8 @@
     <title>
       Add Product
     </title>
+    <script src="../src/js/product.js"></script> 
+    <script src="../src/js/jquery-3.7.1.min.js"></script> 
   </head>
 
   <body
@@ -80,7 +82,8 @@
                       type="text"
                       placeholder="Biconic Green Cowl Neck Off Shoulder Side Ruched Slit Dress"
                       class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                      id = "titleInput"
+                      />
                   </div>
 
                   <div class="w-full xl:w-1/3">
@@ -93,7 +96,8 @@
                       type="text"
                       placeholder="P1003"
                       class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
+                      id = "productIdInput"
+                      />
                   </div>
                 </div>
             <div class="mb-4.5">
@@ -175,31 +179,11 @@
                         </svg>
                         </button>
                     </div>
+                    <textarea id="descriptionInput" rows="4" class="w-full rounded  bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" placeholder="Write your thoughts here..."></textarea>
                 
-                    <div class="h-[10rem] px-5 py-2 overflow-auto" data-hs-editor-field=""></div>
-                    </div>
                 </div>
             </div>
-                <!-- End Tiptap -->
-                <style>
-                    .ProseMirror:focus {
-                      outline: none;
-                    }
-                  
-                    .tiptap ul p,
-                    .tiptap ol p {
-                      display:contents;
-                    }
-                  
-                    .tiptap p.is-editor-empty:first-child::before {
-                      font-size: 14px;
-                      
-                      content: attr(data-placeholder);
-                      float: left;
-                      height: 0;
-                      pointer-events: none;
-                    }
-                </style>
+
 
                 <div class="mb-4.5">
                   <label
@@ -222,19 +206,6 @@
                 </div>                
                 </div>
 
-                <!-- <div class="mb-4.5">
-                  <label
-                    class="mb-3 block text-sm font-medium text-black dark:text-white"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Select subject"
-                    class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                </div> -->
-
                 <div class=" flex flex-col gap-6 xl:flex-row">
                     <div class="mb-4.5 xl:w-1/3">
                         <label
@@ -250,6 +221,7 @@
                             class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                             :class="isOptionSelected && 'text-black dark:text-white'"
                             @change="isOptionSelected = true"
+                            id = "brandNameInput"
                           >
                             <option value="" class="text-body">
                               Select product's brand
@@ -299,6 +271,7 @@
                             class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                             :class="isOptionSelected && 'text-black dark:text-white'"
                             @change="isOptionSelected = true"
+                            id = "productCategoryInput"
                           >
                             <option value="" class="text-body">
                               Select product category
@@ -348,6 +321,7 @@
                             class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                             :class="isOptionSelected && 'text-black dark:text-white'"
                             @change="isOptionSelected = true"
+                            id = "itemCategoryInput"
                           >
                             <option value="" class="text-body">
                               Select item category
@@ -406,6 +380,7 @@
 
                 <button
                   class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                  onclick="saveProduct()"
                 >
                   Save Product
                 </button>
@@ -423,112 +398,6 @@
   </body>
 </html>
 
-<script type="module">
-    // Tiptap
-    import { Editor } from 'https://esm.sh/@tiptap/core';
-    import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder';
-    import StarterKit from 'https://esm.sh/@tiptap/starter-kit';
-    import Paragraph from 'https://esm.sh/@tiptap/extension-paragraph';
-    import Bold from 'https://esm.sh/@tiptap/extension-bold';
-    import Underline from 'https://esm.sh/@tiptap/extension-underline';
-    import Link from 'https://esm.sh/@tiptap/extension-link';
-    import BulletList from 'https://esm.sh/@tiptap/extension-bullet-list';
-    import OrderedList from 'https://esm.sh/@tiptap/extension-ordered-list';
-    import ListItem from 'https://esm.sh/@tiptap/extension-list-item';
-    import Blockquote from 'https://esm.sh/@tiptap/extension-blockquote';
-  
-    const editor = new Editor({
-      element: document.querySelector('#hs-editor-tiptap [data-hs-editor-field]'),
-      extensions: [
-        Placeholder.configure({
-          placeholder: 'Provide a brief description of the product.',
-          emptyNodeClass: 'text-gray-800'
-        }),
-        StarterKit,
-        Paragraph.configure({
-          HTMLAttributes: {
-            class: 'text-gray-800'
-          }
-        }),
-        Bold.configure({
-          HTMLAttributes: {
-            class: 'font-bold'
-          }
-        }),
-        Underline,
-        Link.configure({
-          HTMLAttributes: {
-            class: 'inline-flex items-center gap-x-1 text-blue-600 decoration-2 hover:underline font-medium'
-          }
-        }),
-        BulletList.configure({
-          HTMLAttributes: {
-            class: 'list-disc list-inside text-gray-800'
-          }
-        }),
-        OrderedList.configure({
-          HTMLAttributes: {
-            class: 'list-decimal list-inside text-gray-800'
-          }
-        }),
-        ListItem,
-        Blockquote.configure({
-          HTMLAttributes: {
-            class: 'text-gray-800 sm:text-xl'
-          }
-        })
-      ]
-    });
-    const actions = [
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-bold]',
-        fn: () => editor.chain().focus().toggleBold().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-italic]',
-        fn: () => editor.chain().focus().toggleItalic().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-underline]',
-        fn: () => editor.chain().focus().toggleUnderline().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-strike]',
-        fn: () => editor.chain().focus().toggleStrike().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-link]',
-        fn: () => {
-          const url = window.prompt('URL');
-          editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
-        }
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-ol]',
-        fn: () => editor.chain().focus().toggleOrderedList().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-ul]',
-        fn: () => editor.chain().focus().toggleBulletList().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-blockquote]',
-        fn: () => editor.chain().focus().toggleBlockquote().run()
-      },
-      {
-        id: '#hs-editor-tiptap [data-hs-editor-code]',
-        fn: () => editor.chain().focus().toggleCode().run()
-      }
-    ];
-  
-    actions.forEach(({ id, fn }) => {
-      const action = document.querySelector(id);
-  
-      if (action === null) return;
-  
-      action.addEventListener('click', fn);
-    });
-</script>
 
 <script>
 document.getElementById('dropzone-file').addEventListener('change', function(event) {
@@ -559,4 +428,6 @@ document.getElementById('dropzone-file').addEventListener('change', function(eve
 
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+
+
