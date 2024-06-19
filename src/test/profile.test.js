@@ -7,7 +7,6 @@ const html = fs.readFileSync(path.resolve(__dirname, '../profile.html'), 'utf8')
 
 describe('Profile Page', () => {
 
-  // Test for document title
   test('document title is "Profile"', () => {
     document.documentElement.innerHTML = html;
     expect(document.title).toBe('Profile');
@@ -19,14 +18,13 @@ describe('Profile Page', () => {
     expect(link.href).toMatch(/index\.html$/);
   });
 
-  // Test for elements existence
   test('page contains a profile section', () => {
     document.documentElement.innerHTML = html;
     const profileSection = document.querySelector('.overflow-hidden.rounded-sm.border.border-stroke.bg-white.shadow-default');
     expect(profileSection).toBeTruthy();
   });
 
-// Test for specific contents
+
 test('profile section contains the company name', () => {
     document.documentElement.innerHTML = html;
     const companyName = document.querySelector('.text-2xl.font-medium');
