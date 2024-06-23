@@ -68,9 +68,12 @@ x-init="
           <div id="product-details" class="grid grid-cols-1 gap-4 sm:grid-cols-1">
             <!-- Product information will be dynamically added here -->
           </div>
-          <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
-            <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+          <div class="grid-flow-row justify-center p-8 items-center">
+
           
+            <include src="./partials/variants-table.html" />
+
+
 
         </div>
       </main>
@@ -78,7 +81,7 @@ x-init="
   </div>
 
   <!-- Include any necessary scripts here -->
-  <script>
+  <!-- <script>
     async function fetchProductData(productId) {
       try {
         const response = await fetch(`http://localhost:5000/product/${productId}`);
@@ -149,6 +152,100 @@ x-init="
       const productId = document.getElementById('default-search').value;
       displayProductDetails(productId);
     });
+  </script> -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Function to get query parameter by name
+      function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+      }
+  
+      // Get productId from the URL
+      const productId = getQueryParam('productId');
+  
+      // If productId is present, display the product details
+      if (productId) {
+        displayProductDetails(productId);
+      }
+    });
+  
+    async function fetchProductData(productId) {
+      try {
+        const response = await fetch(`http://localhost:5000/product/${productId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        const productData = await response.json();
+        return productData;
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    }
+  
+    // Function to display product details
+    async function displayProductDetails(productId) {
+      const productData = await fetchProductData(productId);
+  
+      // Access the elements where you want to render the data
+      const productDetailsContainer = document.getElementById('product-details');
+      
+      // Construct HTML to display product details
+      const html = `
+          <div class="md:flex justify-center py-8">          
+            <div class="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
+            ${productData.images.map(image => `
+              <img src="data:image/jpeg;base64,${image.imageData}" alt="${image.color}" style="max-width: 350px; margin-bottom: 20px; margin-right: 20px;">
+            `).join(' ')}
+            </div>
+            <div class="xl:w-/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
+              <div class="border-b border-gray-200 pb-6">
+                <p class="text-s leading-none text-gray-600 dark:text-gray-300 "> </p>
+                <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-3">${productData.productName}</h1>
+              </div>
+              <div class="py-3 border-b border-gray-200 flex items-center justify-between">
+              <p><strong>Available Colors and Sizes:</strong></p>
+                <ul >
+                ${productData.colorSizes.map(item => `
+                    <li class="gap-10">
+                    ${item.color} | ${item.size} | ${item.quantity} available
+                    </li>
+                `).join('')}
+                </ul>
+              </div>
+              <button class="dark:bg-white gap-3 dark:text-gray-900 dark:hover:bg-gray-100 text-base flex items-center justify-center leading-none text-white bg-black w-full py-4 hover:bg-gray-700 focus:outline-none dark:bg-black ">
+                <svg class="w-6  h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 7V6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1M3 18v-7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+                </svg>
+                LKR.${productData.price.toFixed(2)}
+              </button>
+              <div>
+                <p class=" text-base lg:leading-tight leading-normal text-gray-600 dark:text-gray-300 mt-3">${productData.description}</br>It is a long established fact that a reader will be distracted by thereadable content of a page when looking at its layout. The point of usingLorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+                <p class="text-base leading-4 mt-4 ml-4  text-gray-600 dark:text-gray-300"><strong>Product Code :</strong>   ${productId}</p>
+                <p class="text-base leading-4 mt-4 ml-4 text-gray-600 dark:text-gray-300"><strong class="mr-15">Brand       :</strong>   ${productData.brandName}</p>
+                <p class="text-base leading-4 mt-4 ml-4 text-gray-600 dark:text-gray-300"><strong class="mr-9">Category     :</strong>   ${productData.productCategory}</p>
+                <p class="text-base leading-4 mt-4 ml-4 text-gray-600 dark:text-gray-300"><strong class="mr-13">Gender       :</strong>   ${productData.gender}</p>
+              </div>
+            </div>
+          </div>
+      `;
+  
+      // Insert the generated HTML into the container
+      productDetailsContainer.innerHTML = html;
+    }
+  
+    // Add event listener to the form to handle search submission
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const productId = document.getElementById('default-search').value;
+      displayProductDetails(productId);
+    });
   </script>
+  
+
+
+
+
 </body>
 </html>
