@@ -39,9 +39,7 @@ function saveProduct() {
         error: function(xhr, status, error) {
             console.error('Error:', xhr.responseText);
             validationMessage("Product adding unsucessfull...!");
-            setTimeout(() => {
-                location.reload();
-            }, 3000);
+
         }
     });
 
@@ -81,9 +79,7 @@ function saveProduct() {
                 error: function(xhr, status, error) {
                     console.error('Error:', xhr.responseText);
                     validationMessage("Product variant adding unsucessfull...!");
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
+
                 }
             });
 
@@ -106,9 +102,7 @@ function saveProduct() {
                 error: function(xhr, status, error) {
                     console.error('Error:', xhr.responseText);
                     validationMessage("Product image adding unsucessfull...!");
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
+
                 }
             });
          };
