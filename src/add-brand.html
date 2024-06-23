@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>
       Add Product
     </title>
@@ -11,6 +12,7 @@
 
   <script src="/src/js/jquery-3.7.1.min.js"></script>
   <script src="../src/js/brand.js"></script>
+
 
   <body
     x-data="{ page: 'formLayout', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -22,6 +24,7 @@
     <!-- ===== Preloader Start ===== -->
     <include src="./partials/preloader.html"></include>
     <!-- ===== Preloader End ===== -->
+
 
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
@@ -63,7 +66,7 @@
             <!-- ====== Form Layout Section Start -->
             <div
             class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
-          >
+            >
             <div
               class="border-b border-stroke px-6.5 py-4 dark:border-strokedark"
             >
@@ -97,17 +100,20 @@
                       type="text"
                       id="brand-id-input"
                       placeholder="Ex: BR1003"
-                      class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      class="w-full  rounded  border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
+                    <span class="mt-2 hidden text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
+                      Please enter a valid email address
+                    </span>
                   </div>
                 </div>
                 <!-- Brand Logo -->
                 <div class="mb-4.5">
-                    <label
-                      class="mb-3 block text-sm font-medium text-black dark:text-white"
-                    >
-                      Media <span class="text-meta-1">*</span>
-                    </label>
+                  <label
+                    class="mb-3 block text-sm font-medium text-black dark:text-white"
+                  >
+                    Media <span class="text-meta-1">*</span>
+                  </label>
                     <div class="flex items-center justify-center w-full">
                       <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-stroke border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100  dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
                         <div id="dropzone-area" class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -120,7 +126,38 @@
                         <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
                       </label>
                   </div>                
-                  </div>
+                </div>
+
+                <script>
+                  document.getElementById('dropzone-file').addEventListener('change', function(event) {
+                    const file = event.target.files[0]; // Get the first selected file
+                  
+                    if (file) {
+                      const reader = new FileReader();
+                      
+                      reader.onload = function(e) {
+                        const imageUrl = e.target.result; // Get the image data URL
+                        
+                        const dropzoneArea = document.getElementById('dropzone-area'); // The div containing the upload elements
+                        dropzoneArea.innerHTML = ''; // Clear the existing content
+                        
+                        // Create the image element and set the source to the uploaded image
+                        const imageElement = document.createElement('img');
+                        imageElement.src = imageUrl; // Set the image source
+                        imageElement.alt = 'Uploaded Image'; // Alternative text for accessibility
+                        imageElement.className = 'w-full h-50 object-fit rounded-lg'; // Styling for the displayed image
+                        
+                        dropzoneArea.appendChild(imageElement); // Add the image to the dropzone area
+                      };
+                      
+                      reader.readAsDataURL(file); // Read the file and trigger the onload event
+                    }
+                  });
+                  
+                  
+                </script>
+              
+                
                 <div class="mb-4.5">
                     <label
                       class="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -133,9 +170,8 @@
                 <!-- Save Button -->       
                 <div class="flex justify-center items-center gap-3 py-2.5 px-6.5 pb-6.5 xl:pt-4">
                     <button class="bg-green-800 gap-2 w-full justify-center hover:bg-gray-400 text-white font-bold py-2 px-16 rounded inline-flex items-center"
-                     onclick="saveBrand()"
-                    
-                      >
+                     onclick="saveBrand()"                    
+                     >
                         <span>Save</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />

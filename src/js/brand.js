@@ -1,59 +1,51 @@
-
 function saveBrand() {
     let brandId = $('#brand-id-input').val();
     let name = $('#brand-name-input').val();
     let fileInput = $('#dropzone-file')[0];
-    let category = document.getElementById('category-Select').value;
-    let size = document.getElementById('size-Select').value;
-    let item = document.getElementById('item-Select').value;
-    let m1 = $('#m1-input').val();
-    let m2 = $('#m2-input').val();
-    let m3 = $('#m3-input').val();
-    let m4 = $('#m4-input').val();
-    let m5 = $('#m5-input').val();
-    let m6 = $('#m6-input').val();
-    let m7 = $('#m7-input').val();
-    let m8 = $('#m8-input').val();
-    let m9 = $('#m9-input').val();
-    let m10 = $('#m10-input').val();
-    let m11 = $('#m11-input').val();
-    let m12 = $('#m12-input').val();
-    let m13 = $('#m13-input').val();
-    let m14 = $('#m14-input').val();
 
+    // Check if all input fields are filled
+    if (!brandId || !name || !fileInput.files.length || rowCount==0) {
+        console.error("All fields are required.");
+        alert("All fields are required!");
+        return;
+    }
 
-    if (fileInput.files && fileInput.files[0]) {
-        let file = fileInput.files[0];
-        let reader = new FileReader();
+    let measurements = [];
+    console.log(rowCount);
 
-        reader.onload = function(e) {
-            let productMedia = e.target.result;
-            // Convert the base64 string to a byte array
-            let byteArray = new Uint8Array(atob(productMedia.split(',')[1]).split("").map(char => char.charCodeAt(0)));
+    let file = fileInput.files[0];
+    let reader = new FileReader();
 
-            console.log(brandId);
-            console.log(name);
-            console.log(byteArray);
-            console.log(category);
-            console.log(size);
-            console.log(item);
-            console.log(m1);
-            console.log(m2);
-            console.log(m3);
-            console.log(m4);
-            console.log(m5);
-            console.log(m6);
-            console.log(m7);
-            console.log(m8);
-            console.log(m9);
-            console.log(m10);
-            console.log(m11);
-            console.log(m12);
-            console.log(m13);
-            console.log(m14);
+    reader.onload = function(e) {
+        let productMedia = e.target.result;
+        let byteArray = new Uint8Array(atob(productMedia.split(',')[1]).split("").map(char => char.charCodeAt(0)));
+
+        let brandData = {
+            brandId: brandId,
+            brandName: name,
+            productMedia: Array.from(byteArray)
+        };
+
+        for (let i = 1; i <= rowCount; i++) {
+            let category = document.getElementById('category-Select-'+i).value;
+            let size = document.getElementById('size-Select-'+i).value;
+            let item = document.getElementById('item-Select-'+i).value;
+            let m1 = $('#m1-input-'+i).val();
+            let m2 = $('#m2-input-'+i).val();
+            let m3 = $('#m3-input-'+i).val();
+            let m4 = $('#m4-input-'+i).val();
+            let m5 = $('#m5-input-'+i).val();
+            let m6 = $('#m6-input-'+i).val();
+            let m7 = $('#m7-input-'+i).val();
+            let m8 = $('#m8-input-'+i).val();
+            let m9 = $('#m9-input-'+i).val();
+            let m10 = $('#m10-input-'+i).val();
+            let m11 = $('#m11-input-'+i).val();
+            let m12 = $('#m12-input-'+i).val();
+            let m13 = $('#m13-input-'+i).val();
+            let m14 = $('#m14-input-'+i).val();
 
             let brandMeasurementData = {
-                measurementId: null,
                 category: category,
                 size: size,
                 item: item,
@@ -77,41 +69,32 @@ function saveBrand() {
                 thighCircumference: m13,
                 waistCircumference: m14
             }
+            measurements.push(brandMeasurementData);
+        }
 
-            // Now you can send the byteArray to your backend API
-            let brandData = {
-                brandId: brandId,
-                name: name,
-                productMedia: Array.from(byteArray)
-            };
+        $.ajax({
+            url: 'http://localhost:5000/Brand/add-brand',
+            type: 'POST',
+            
+            contentType: 'application/json',
+            data: JSON.stringify(brandData),
+            success: function(response) {
+                console.log("Brand saved successfully:", response);
+            },
+            error: function(error) {
+                console.error("Error saving brand:", error);
+            }
+        });
 
-
-            // Send brandData to your backend using AJAX, fetch, or any other method
-            $.ajax({
-                url: 'http://localhost:5000/Brand/saveBrand',
-                type: 'POST',
-                
-                contentType: 'application/json',
-                data: JSON.stringify(brandData),
-                success: function(response) {
-                    console.log("Brand saved successfully:", response);
-                },
-                error: function(error) {
-                    console.error("Error saving brand:", error);
-                }
-            });
-
-
-
-            setTimeout(function() {
+        setTimeout(function() {
                 $.ajax({
-                    url: 'http://localhost:5000/BrandMeasurement/saveMeasurement',
-                    type: 'POST',
-                    
+                    url: 'http://localhost:5000/BrandMeasurement/addBrandMeasurements',
+                    type: 'POST',                 
                     contentType: 'application/json',
-                    data: JSON.stringify(brandMeasurementData),
+                    data: JSON.stringify(measurements),
                     success: function(response) {
                         console.log("Brand Measurement saved successfully:", response);
+                        alert("Brand Saved Successfully");
                         $('#brand-id-input').val('');
                         $('#brand-name-input').val('');
                         $('#dropzone-file').val('');
@@ -135,18 +118,20 @@ function saveBrand() {
                     },
                     error: function(error) {
                         console.error("Error saving brand measurement:", error);
+                        alert("Brand Saved Successfully");
+                        for(let i=1 ;i<=rowCount;i++){
+                            removeRow("row-"+i);
+                        }
                     }
                 });
 
-            },5000);
-        };
-
-        reader.readAsDataURL(file);
-    } else {
-        showSuccessMessage();
-        console.error("No file selected.");
-
-    }
+        },3000);
+    };
+    reader.readAsDataURL(file);      
 }
+
+
+
+
 
 

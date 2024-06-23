@@ -1,13 +1,12 @@
 <div
   class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
 >
-
-  <div class="flex flex-col">
+  <div class="flex flex-col" id="measurement-table">
     <div
       class="grid grid-cols-8 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-cols-8"
     >
       <div class="p-2.5 xl:p-5">
-        <h5 class="text-sm font-medium  uppercase xsm:text-sm ">Item</h5>
+        <h5 class="text-sm font-medium uppercase xsm:text-sm">Item</h5>
       </div>
       <div class="p-2.5 text-center xl:p-5">
         <h5 class="text-sm font-medium uppercase xsm:text-sm">Category</h5>
@@ -18,30 +17,185 @@
       <div class="p-2.5 col-span-4 text-center xl:p-5">
         <h5 class="text-sm font-medium uppercase xsm:text-sm">Measurements</h5>
       </div>
-
       <div class="p-2.5 text-center xl:p-5">
         <h5 class="text-sm font-medium uppercase xsm:text-sm">Delete</h5>
       </div>
     </div>
-    <!-- Row 1 -->
-    <div
-      class="grid grid-cols-8 border-b border-stroke dark:border-strokedark sm:grid-cols-8"
-    >
-        <!-- Row 01 - Add Category -->
-        <div class="flex items-center p-2.2 xl:p-3">
-        <div
-        x-data="{ isOptionSelected: false }"
-        class="relative z-20 bg-transparent dark:bg-form-input"
-      >
-        <select
-          id="item-Select"
-          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-          :class="isOptionSelected && 'text-black dark:text-white'"
-          @change="isOptionSelected = true"
+  <!-- Initial Row (Example) -->
+  <!-- <div class="grid grid-cols-8 border-b border-stroke dark:border-strokedark sm:grid-cols-8" id="row-1">   
+ 
+      <div class="flex items-center p-2.2 xl:p-3">
+        <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+          <select id="item-Select-1" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+            <option value="" class="text-body">Select Item</option>
+            <option value="T-Shirt" class="text-body">T-Shirt</option>
+            <option value="Shirt" class="text-body">Shirt</option>
+            <option value="Short" class="text-body">Short</option>
+            <option value="Denim" class="text-body">Denim</option>
+            <option value="Bottom" class="text-body">Bottom</option>
+            <option value="Tops & T-Shirts" class="text-body">Tops & T-Shirts</option>
+            <option value="Party Frock" class="text-body">Party Frock</option>
+            <option value="Jeans" class="text-body">Jeans</option>
+            <option value="Blouse" class="text-body">Blouse</option>
+            <option value="Night Dress" class="text-body">Night Dress</option>
+            <option value="Jacket" class="text-body">Jacket</option>
+            <option value="Dresses" class="text-body">Dresses</option>
+          </select>
+          <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.8">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="flex items-center p-2.5 xl:p-5">
+        <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+          <select id="category-Select-1" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+            <option value="" class="text-body">Select Category</option>
+            <option value="Men" class="text-body">Men</option>
+            <option value="Women" class="text-body">Women</option>
+            <option value="Kids" class="text-body">Kids</option>
+            <option value="Unisex" class="text-body">Unisex</option>
+            <option value="Sport" class="text-body">Sport</option>
+            <option value="Footwear" class="text-body">Footwear</option>
+          </select>
+          <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.8">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+    
+      <div class="flex items-center p-2.5 xl:p-5">
+        <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+          <select id="size-Select-1" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+            <option value="" class="text-body">Select Size</option>
+            <option value="Extra Small" class="text-body">Extra Small</option>
+            <option value="Small" class="text-body">Small</option>
+            <option value="Medium" class="text-body">Medium</option>
+            <option value="Large" class="text-body">Large</option>
+            <option value="XXL" class="text-body">XXL</option>
+          </select>
+          <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.8">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="flex col-span-4 items-center p-2.5 xl:p-5">
+        <div class="grid grid-row-2 gap-1 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-rows-2"></div>
+            <div class="grid grid-cols-7 gap-1 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-cols-7">
+                <div class="pl-2 xl:pt-2">
+                <input type="text" placeholder="M-1" id="m1-input-1" title="Ankle Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>                  
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-2" id="m2-input-1" title="Arm Length" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-3" id="m3-input-1" title="Bicep Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-4" id="m4-input-1" title="Calf Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-5" id="m5-input-1" title="Chest Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-6" id="m6-input-1" title="Forearm Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="pr-2 xl:pt-2">
+                <input type="text" placeholder="M-7" id="m7-input-1" title="Head Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+
+                <div class="pl-2 xl:pb-2">
+                <input type="text" placeholder="M-8" id="m8-input-1" title="Hip Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-9" id="m9-input-1" title="Inside Leg Length" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-10" id="m10-input-1" title="Neck Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-11" id="m11-input-1" title="Shoulder Breadth" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-12" id="m12-input-1" title="Shoulder To Crotch" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-13" id="m13-input-1" title="Thigh Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="pr-2 xl:pb-2">
+                <input type="text" placeholder="M-14" id="m14-input-1" title="Waist Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+
+            </div>              
+      </div>
+
+      <div class="flex items-center gap-3 p-2.5 xl:p-5">
+        <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2"
+         onclick="removeRow('row-1')"
         >
-          <option value="" class="text-body">
-            Select Item
-          </option>
+            <svg class="w-[20px] h-[20px] text-red-800 hover:text-red-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z" clip-rule="evenodd"/>
+            </svg>
+            Delete
+        </button>             
+      </div>
+  </div> -->
+  </div>
+
+ <!-- Add New Row Button -->
+ <div class="p-5 flex justify-center">
+   <button
+   onclick="addRow()"
+     class="rounded-full bg-primary text-white p-4"
+   >
+     <svg
+       width="24"
+       height="24"
+       fill="currentColor"
+       viewBox="0 0 24 24"
+     >
+       <path
+         d="M12 5V19M5 12H19"
+         stroke="#fff"
+         stroke-width="2"
+         stroke-linecap="round"
+       />
+     </svg>
+   </button>
+ </div>
+
+
+
+<script>
+let rowCount = 0;
+
+function addRow() {
+  rowCount++;
+  const table = document.getElementById('measurement-table');
+  const newRow = document.createElement('div');
+  newRow.classList.add('grid', 'grid-cols-8', 'border-b', 'border-stroke', 'dark:border-strokedark', 'sm:grid-cols-8');
+  newRow.id = `row-${rowCount}`;
+  
+  newRow.innerHTML = `
+    <div class="flex items-center p-2.2 xl:p-3">
+      <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+        <select id="item-Select-${rowCount}" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+          <option value="" class="text-body">Select Item</option>
           <option value="T-Shirt" class="text-body">T-Shirt</option>
           <option value="Shirt" class="text-body">Shirt</option>
           <option value="Short" class="text-body">Short</option>
@@ -55,236 +209,126 @@
           <option value="Jacket" class="text-body">Jacket</option>
           <option value="Dresses" class="text-body">Dresses</option>
         </select>
-        <span
-          class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
-        >
-          <svg
-            class="fill-current"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+        <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+          <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g opacity="0.8">
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                fill=""
-              ></path>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
             </g>
           </svg>
         </span>
       </div>
-        </div>
-
-        <!-- Row 01 - Add Category -->
-        <div class="flex items-center  p-2.5 xl:p-5">
-          <div
-          x-data="{ isOptionSelected: false }"
-          class="relative z-20 bg-transparent dark:bg-form-input"
-        >
-          <select
-            id="category-Select"
-            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-            :class="isOptionSelected && 'text-black dark:text-white'"
-            @change="isOptionSelected = true"
-          >
-            <option value="" class="text-body">
-              Select Category
-            </option>
-            <option value="Men" class="text-body">Men</option>
-            <option value="Women" class="text-body">Women</option>
-            <option value="Kids" class="text-body">Kids</option>
-            <option value="Unisex" class="text-body">Unisex</option>
-            <option value="Sport" class="text-body">Sport</option>
-            <option value="Footwear" class="text-body">Footwear</option>
-          </select>
-          <span
-            class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
-          >
-            <svg
-              class="fill-current"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+    </div>
+    <div class="flex items-center p-2.5 xl:p-5">
+      <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+        <select id="category-Select-${rowCount}" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+          <option value="" class="text-body">Select Category</option>
+          <option value="Men" class="text-body">Men</option>
+          <option value="Women" class="text-body">Women</option>
+          <option value="Kids" class="text-body">Kids</option>
+          <option value="Unisex" class="text-body">Unisex</option>
+          <option value="Sport" class="text-body">Sport</option>
+          <option value="Footwear" class="text-body">Footwear</option>
+        </select>
+        <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+          <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.8">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+            </g>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="flex items-center p-2.5 xl:p-5">
+      <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+        <select id="size-Select-${rowCount}" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+          <option value="" class="text-body">Select Size</option>
+          <option value="Extra Small" class="text-body">Extra Small</option>
+          <option value="Small" class="text-body">Small</option>
+          <option value="Medium" class="text-body">Medium</option>
+          <option value="Large" class="text-body">Large</option>
+          <option value="XXL" class="text-body">XXL</option>
+        </select>
+          <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g opacity="0.8">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                  fill=""
-                ></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
               </g>
             </svg>
           </span>
         </div>
-          </div>
+      </div>
 
-        <!-- Row 01 - Add Size -->
-        <div class="flex items-center  p-2.5 xl:p-5">
-            <div
-            x-data="{ isOptionSelected: false }"
-            class="relative z-20 bg-transparent dark:bg-form-input"
-          >
-            <select
-              id="size-Select"
-              class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-              :class="isOptionSelected && 'text-black dark:text-white'"
-              @change="isOptionSelected = true"
-            >
-              <option value="" class="text-body">
-                Select Size
-              </option>
-              <option value="Extra Small" class="text-body">Extra Small</option>
-              <option value="Small" class="text-body">Small</option>
-              <option value="Medium" class="text-body">Medium</option>
-              <option value="Large" class="text-body">Large</option>
-              <option value="XXL" class="text-body">XXL</option>
-            </select>
-            <span
-              class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
-            >
-              <svg
-                class="fill-current"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.8">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                    fill=""
-                  ></path>
-                </g>
-              </svg>
-            </span>
-          </div>
-          </div>
-        <!-- Row 01 - Add Measurements -->
-        <div class="flex col-span-4 items-center p-2.5 xl:p-5">
-            <div class="grid grid-row-2 gap-1 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-rows-2"></div>
-                <div class="grid grid-cols-7 gap-1 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-cols-7">
-                    <div class="pl-2 xl:pt-2">
-                    <input type="text" placeholder="M-1" id="m1-input" title="Ankle Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div>                  
-                    <div class="px-1 xl:pt-2">
-                    <input type="text" placeholder="M-2" id="m2-input" title="Arm Length" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div>
-                    <div class="px-1 xl:pt-2">
-                    <input type="text" placeholder="M-3" id="m3-input" title="Bicep Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="px-1 xl:pt-2">
-                    <input type="text" placeholder="M-4" id="m4-input" title="Calf Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="px-1 xl:pt-2">
-                    <input type="text" placeholder="M-5" id="m5-input" title="Chest Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="px-1 xl:pt-2">
-                    <input type="text" placeholder="M-6" id="m6-input" title="Forearm Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="pr-2 xl:pt-2">
-                    <input type="text" placeholder="M-7" id="m7-input" title="Head Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
+      <div class="flex col-span-4 items-center p-2.5 xl:p-5">
+        <div class="grid grid-row-2 gap-1 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-rows-2"></div>
+            <div class="grid grid-cols-7 gap-1 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-cols-7">
+                <div class="pl-2 xl:pt-2">
+                <input type="text" placeholder="M-1" id="m1-input-${rowCount}" title="Ankle Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>                  
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-2" id="m2-input-${rowCount}" title="Arm Length" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-3" id="m3-input-${rowCount}" title="Bicep Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-4" id="m4-input-${rowCount}" title="Calf Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-5" id="m5-input-${rowCount}" title="Chest Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pt-2">
+                <input type="text" placeholder="M-6" id="m6-input-${rowCount}" title="Forearm Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="pr-2 xl:pt-2">
+                <input type="text" placeholder="M-7" id="m7-input-${rowCount}" title="Head Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
 
-                    <div class="pl-2 xl:pb-2">
-                    <input type="text" placeholder="M-8" id="m8-input" title="Hip Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div>
-                    <div class="px-1 xl:pb-2">
-                    <input type="text" placeholder="M-9" id="m9-input" title="Inside Leg Length" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div>
-                    <div class="px-1 xl:pb-2">
-                    <input type="text" placeholder="M-10" id="m10-input" title="Neck Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div>
-                    <div class="px-1 xl:pb-2">
-                    <input type="text" placeholder="M-11" id="m11-input" title="Shoulder Breadth" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="px-1 xl:pb-2">
-                    <input type="text" placeholder="M-12" id="m12-input" title="Shoulder To Crotch" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="px-1 xl:pb-2">
-                    <input type="text" placeholder="M-13" id="m13-input" title="Thigh Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-                    <div class="pr-2 xl:pb-2">
-                    <input type="text" placeholder="M-14" id="m14-input" title="Waist Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
-                    </div> 
-
-                </div>              
-            </div>
-
-        <!-- Row 01 - Delete Button -->       
-        <div class="flex items-center gap-3 p-2.5 xl:p-5">
-            <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2">
-            <!-- SVG Icon -->
-                <svg class="w-[20px] h-[20px] text-red-800 hover:text-red-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z" clip-rule="evenodd"/>
-                </svg>
-                Delete
-            </button>             
+                <div class="pl-2 xl:pb-2">
+                <input type="text" placeholder="M-8" id="m8-input-${rowCount}" title="Hip Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-9" id="m9-input-${rowCount}" title="Inside Leg Length" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-10" id="m10-input-${rowCount}" title="Neck Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div>
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-11" id="m11-input-${rowCount}" title="Shoulder Breadth" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-12" id="m12-input-${rowCount}" title="Shoulder To Crotch" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="px-1 xl:pb-2">
+                <input type="text" placeholder="M-13" id="m13-input-${rowCount}" title="Thigh Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+                <div class="pr-2 xl:pb-2">
+                <input type="text" placeholder="M-14" id="m14-input-${rowCount}" title="Waist Circumference" class="w-full rounded border-[1.5px] px-2 border-stroke bg-transparent font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"/>
+                </div> 
+            </div>              
+      </div>
+     
+      <div class="flex items-center gap-3 p-2.5 xl:p-5">
+        <button onclick="removeRow('row-${rowCount}')"
+        class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2">
+          <svg class="w-[20px] h-[20px] text-red-800 hover:text-red-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z" clip-rule="evenodd"/>
+          </svg>
+        Delete
+        </button>             
         </div>
       </div>
 
-    <!-- Add New Row Button -->
-    <div class="p-5 flex justify-center">
-          <button
-            class="rounded-full bg-primary text-white p-4"
-            @click="addRow"
-          >
-            <svg
-              width="24"
-              height="24"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 5V19M5 12H19"
-                stroke="#fff"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-    </div>
+  `;  
+  table.appendChild(newRow);
+  return rowCount;
+}
 
-  </div>
-</div>
+function removeRow(rowId) {
+  const row = document.getElementById(rowId);
+  if (row) {
+    row.remove();
+    rowCount--;
+  }
+}
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.2" defer></script>
-
-<script>
-    document.getElementById('dropzone-file').addEventListener('change', function(event) {
-      const file = event.target.files[0]; // Get the first selected file
-    
-      if (file) {
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-          const imageUrl = e.target.result; // Get the image data URL
-          
-          const dropzoneArea = document.getElementById('dropzone-area'); // The div containing the upload elements
-          dropzoneArea.innerHTML = ''; // Clear the existing content
-          
-          // Create the image element and set the source to the uploaded image
-          const imageElement = document.createElement('img');
-          imageElement.src = imageUrl; // Set the image source
-          imageElement.alt = 'Uploaded Image'; // Alternative text for accessibility
-          imageElement.className = 'w-full h-50 object-fit rounded-lg'; // Styling for the displayed image
-          
-          dropzoneArea.appendChild(imageElement); // Add the image to the dropzone area
-        };
-        
-        reader.readAsDataURL(file); // Read the file and trigger the onload event
-      }
-    });
 </script>
-

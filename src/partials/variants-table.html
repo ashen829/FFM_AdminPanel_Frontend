@@ -1,18 +1,15 @@
 
 <div class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 
-  <div class="flex flex-col">
+  <div class="flex flex-col" id="variant-table">
     <div
-      class="grid grid-cols-6 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-cols-6"
+      class="grid grid-cols-5 rounded-lg bg-gray-2 dark:bg-meta-4 sm:grid-cols-5"
     >
       <div class="p-2.5 xl:p-5">
         <h5 class="text-sm font-medium  uppercase xsm:text-sm ">Color</h5>
       </div>
       <div class="p-2.5 text-center xl:p-5">
         <h5 class="text-sm font-medium uppercase xsm:text-sm">Size</h5>
-      </div>
-      <div class="p-2.5 text-center xl:p-5">
-        <h5 class="text-sm font-medium uppercase xsm:text-sm">Price</h5>
       </div>
       <div class="hidden p-2.5 text-center sm:block xl:p-5">
         <h5 class="text-sm font-medium uppercase xsm:text-sm">No. of Items</h5>
@@ -22,27 +19,26 @@
       </div>
     </div>
     <!-- Row 1 -->
+    <!-- <div class="grid grid-cols-6 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
 
-    <div class="grid grid-cols-6 border-b border-stroke dark:border-strokedark sm:grid-cols-6">
-
-        <!-- Row 01 - Add Color -->
+        
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
           <div
           class="relative z-20 bg-transparent dark:bg-form-input"
           >
           <select
             class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"        
-            id = "colorInput"
+            id = "color-Input"
           >
             <option value="" class="text-body">
               Select Color
             </option>
-            <option value="" class="text-body">Blue</option>
-            <option value="" class="text-body">Red</option>
-            <option value="" class="text-body">Green</option>
-            <option value="" class="text-body">Black</option>
-            <option value="" class="text-body">White</option>
-            <option value="" class="text-body">Other</option>
+            <option value="Blue" class="text-body">Blue</option>
+            <option value="Red" class="text-body">Red</option>
+            <option value="Green" class="text-body">Green</option>
+            <option value="Black" class="text-body">Black</option>
+            <option value="White" class="text-body">White</option>
+            <option value="Other" class="text-body">Other</option>
           </select>
           <span
             class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -68,23 +64,23 @@
         </div>
         </div>
 
-        <!-- Row 01 - Add Size -->
+        
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
             <div
             class="relative z-20 bg-transparent dark:bg-form-input"
             >
             <select
               class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-              id="sizeInput"
+              id="size-Input"
             >
               <option value="" class="text-body">
                 Select Size
               </option>
-              <option value="" class="text-body">Extra Small</option>
-              <option value="" class="text-body">Small</option>
-              <option value="" class="text-body">Medium</option>
-              <option value="" class="text-body">Large</option>
-              <option value="" class="text-body">XXL</option>
+              <option value="Extra Small" class="text-body">Extra Small</option>
+              <option value="Small" class="text-body">Small</option>
+              <option value="Medium" class="text-body">Medium</option>
+              <option value="Large" class="text-body">Large</option>
+              <option value="XXl" class="text-body">XXL</option>
             </select>
             <span
               class="absolute right-4 top-1/2 z-30 -translate-y-1/2"
@@ -110,7 +106,7 @@
           </div>
         </div>
 
-        <!-- Row 01 - Add Price -->
+        
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
           <div
           class="relative z-20 bg-transparent dark:bg-form-input"
@@ -125,7 +121,7 @@
           </div>
         </div>
 
-        <!-- Row 01 - Items -->
+       
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
             <input
               type="number"
@@ -134,7 +130,7 @@
             />
         </div>
 
-        <!-- Row 01 - Images -->
+        
         <div class="flex  items-center justify-center w-full">
           <label for="dropzone-file-1" class="flex flex-col items-center justify-center w-full h-10 border-2 border-stroke border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
             <div id="dropzone-area-1" class="flex flex-row gap-3 items-center justify-center py-5">
@@ -144,7 +140,7 @@
               <p class="text-sm text-gray-500 dark:text-gray-400 font-semibold">Click to upload</p>
             </div>
             <input class="flex flex-row" id="dropzone-file-1" type="file" class="hidden" accept="image/*" multiple 
-            /> <!-- Allow multiple files -->
+            /> 
           </label>
         </div>
         
@@ -177,45 +173,172 @@
           });
         </script>
                 
-        <!-- Delete Button -->
+        
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
-                <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2"
-                @click = "rows.splice(index, 1)">
-                  <!-- SVG Icon -->
+                <button class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2">
+                
                   <svg class="w-[20px] h-[20px] text-red-800 hover:text-red-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z" clip-rule="evenodd"/>
                   </svg>
-                  <!-- Button Text -->
+                  
                   Delete
                 </button>
                 
         </div>
 
-    </div>
-        <!-- Add New Row Button
-        <div class="p-5 flex justify-center"
-        @click="rows.push({ color: '', size: '', price: '', numItems: 1, images:'' })">
-          <button
-            class="rounded-full bg-primary text-white p-4"
-            @click="addRow"
-          >
-            <svg
-              width="24"
-              height="24"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 5V19M5 12H19"
-                stroke="#fff"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-        </div> -->
-      </div>
+    </div> -->  
   </div>
+</div>
+
+<div class="p-5 flex justify-center">
+  <button
+    onclick= "addRow()"
+    class="rounded-full bg-primary text-white p-4"
+  >
+    <svg
+      width="24"
+      height="24"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 5V19M5 12H19"
+        stroke="#fff"
+        stroke-width="2"
+        stroke-linecap="round"
+      />
+    </svg>
+  </button>
+</div>
+
+<script>
+  let rowCount = 0;
+  function addRow() {
+    rowCount++;
+    const table = document.getElementById('variant-table');
+    const newRow = document.createElement('div');
+    newRow.classList.add('grid', 'grid-cols-5', 'border-b', 'border-stroke', 'dark:border-strokedark', 'sm:grid-cols-5');
+    newRow.id = `row-${rowCount}`;
+    
+    newRow.innerHTML = `
+
+      <div class="flex items-center p-2.5 xl:p-5">
+        <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+          <select id="color-Select-${rowCount}" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+            <option value="" class="text-body">Select Color</option>
+            <option value="Red" class="text-body">Red</option>
+            <option value="Blue" class="text-body">Blue</option>
+            <option value="White" class="text-body">White</option>
+            <option value="Black" class="text-body">Black</option>
+            <option value="Yellow" class="text-body">Yellow</option>
+          </select>
+          <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.8">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center p-2.5 xl:p-5">
+        <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+          <select id="size-Select-${rowCount}"class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+            <option value="" class="text-body">Select Size</option>
+            <option value="S" class="text-body">Small</option>
+            <option value="M" class="text-body">Medium</option>
+            <option value="L" class="text-body">Large</option>
+            <option value="XXL" class="text-body">2XL</option>
+            <option value="4XL" class="text-body">4XL</option>
+
+          </select>
+          <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.8">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z" fill=""></path>
+              </g>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center p-2.5 xl:p-5">
+        <input
+          type="number"
+          class="w-30 rounded border-[1.5px] border-stroke bg-transparent px-2.5 py-1.5 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+          id = "quantity-Select-${rowCount}"
+        />
+      </div>
+
+      <div class="flex  items-center justify-center w-full">
+        <label for="dropzone-file-${rowCount}" class="flex flex-col items-center justify-center w-full h-10 border-2 border-stroke border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary">
+          <div id="dropzone-area-${rowCount}" class="flex flex-row gap-3 items-center justify-center py-5">
+            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+            </svg>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-semibold">Click to upload</p>
+          </div>
+            <input class="flex flex-row" id="dropzone-file-${rowCount}" type="file" class="hidden" accept="image/*" multiple/> 
+        </label>
+      </div>
+             
+      <div class="flex items-center gap-3 p-2.5 xl:p-5">
+        <button onclick="removeRow('row-${rowCount}')"
+         class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded   flex items-center gap-2">
+         <svg class="w-[20px] h-[20px] text-red-800 hover:text-red-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z" clip-rule="evenodd"/>
+         </svg>
+         Delete
+        </button>             
+      </div>
+
+    `;  
+    table.appendChild(newRow);
+
+
+    document.getElementById(`dropzone-file-${rowCount}`).addEventListener('change', function(event) {
+    const files = event.target.files;
+    const dropzoneArea = document.getElementById(`dropzone-area-${rowCount}`);
+    dropzoneArea.innerHTML = '';
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          const imageUrl = e.target.result; 
+          
+          const imageElement = document.createElement('img');
+          imageElement.src = imageUrl; 
+          imageElement.alt = 'Uploaded Image'; 
+          imageElement.className = 'w-full h-6 object-cover rounded-lg ';
+          
+          dropzoneArea.appendChild(imageElement); 
+        };
+        
+        reader.readAsDataURL(file); 
+      }
+    }
+  });
+
+
+  }
+  
+  function removeRow(rowId) {
+    const row = document.getElementById(rowId);
+    if (row) {
+      row.remove();
+      rowCount--;
+    }
+  }
+  
+  </script>
+
+<script>
+
+</script>
 
 
 
