@@ -77,7 +77,7 @@ function saveBrand() {
         }
 
         $.ajax({
-            url: 'http://localhost:5000/Brand/add-brand',
+            url: 'http://34.222.253.72:5000/Brand/add-brand',
             type: 'POST',
             
             contentType: 'application/json',
@@ -96,7 +96,7 @@ function saveBrand() {
 
         setTimeout(function() {
                 $.ajax({
-                    url: 'http://localhost:5000/BrandMeasurement/addBrandMeasurements',
+                    url: 'http://34.222.253.72:5000/BrandMeasurement/addBrandMeasurements',
                     type: 'POST',                 
                     contentType: 'application/json',
                     data: JSON.stringify(measurements),

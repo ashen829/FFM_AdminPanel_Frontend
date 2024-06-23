@@ -209,7 +209,7 @@
   
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        fetch('http://localhost:5000/getAllProducts')
+        fetch('http://34.222.253.72:5000/getAllProducts')
           .then(response => response.json())
           .then(data => {
             const tableBody = document.getElementById('productTable').getElementsByTagName('tbody')[0];
