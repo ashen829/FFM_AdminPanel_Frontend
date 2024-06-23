@@ -28,7 +28,7 @@ function saveProduct() {
     formData.append('description', description);
 
     $.ajax({
-        url: 'http://34.222.253.72:5000/add-product',
+        url: 'http://34.222.253.72:5000/products/add-product',
         type: 'POST',
         data: formData,
         contentType: false,
@@ -67,7 +67,7 @@ function saveProduct() {
 
   
             $.ajax({
-                url: 'http://34.222.253.72:5000/add-product-information',
+                url: 'http://34.222.253.72:5000/products/add-product-information',
                 type: 'PUT',
                 data: formData_1,
                 contentType: false,
@@ -91,7 +91,7 @@ function saveProduct() {
 
 
             $.ajax({
-                url: 'http://34.222.253.72:5000/product/product-images/addImage',
+                url: 'http://34.222.253.72:5000/products/product-images/addImage',
                 type: 'POST',
                 data: formData_2,
                 contentType: false,
@@ -113,7 +113,7 @@ function saveProduct() {
     setTimeout(() => {
         location.reload();
     }, 3000);
-    },3000);
+    },5000);
 
 
  
