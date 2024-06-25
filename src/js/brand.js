@@ -77,6 +77,7 @@ function saveBrand() {
         }
 
         $.ajax({
+            //url: 'http://localhost:5000/Brand/add-brand',
             url: 'http://34.222.253.72:5000/Brand/add-brand',
             type: 'POST',
             
@@ -96,6 +97,7 @@ function saveBrand() {
 
         setTimeout(function() {
                 $.ajax({
+                    //url: 'http://localhost:5000/BrandMeasurement/addBrandMeasurements',
                     url: 'http://34.222.253.72:5000/BrandMeasurement/addBrandMeasurements',
                     type: 'POST',                 
                     contentType: 'application/json',
@@ -123,7 +125,7 @@ function saveBrand() {
 
 function successMessageBox(message,description) {
 
-    const productDetailsContainer = document.getElementById('add-product');
+    const productDetailsContainer = document.getElementById('add-brand');
 
     const html = `
         <div id="success-message-box" class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
@@ -188,7 +190,7 @@ function warningMessageBox(message,description) {
 
 function failedMessageBox(message,description) {
 
-    const productDetailsContainer = document.getElementById('add-product');
+    const productDetailsContainer = document.getElementById('add-brand');
 
     const html = `
                 <div

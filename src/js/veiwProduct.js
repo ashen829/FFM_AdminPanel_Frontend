@@ -1,61 +1,8 @@
-
-function saveProduct() {
-    let productName = $('#product-title-input').val();
-    let productId = $('#product-id-input').val();
-    let description = $('#description-input').val();
-    let brand = $('#brand-name-Input').val();
-    let price = $('#price-Input').val();
-    let gender = $('#gender-Select').val();
-    let productCategory = $('#category-Select').val();
-
-    console.log(productId);
-    console.log(productName);
-    console.log(price);
-    console.log(brand);
-    console.log(gender);
-    console.log(productCategory);
-    console.log(description);
-
-    if (!productName || !productId || !description || !brand || !price || !gender || !productCategory) {
-        console.error("All fields are required.");
-        warningMessageBox("Saving Failed", "The product could not be saved because some required fields are missing or incomplete. Please review the form and ensure that all mandatory fields are properly filled out before attempting to save again. Your attention to detail is appreciated.");
-        setTimeout(() => {
-            location.reload();
-        }, 8000);
-        return;
-    }
-
-
-    let formData = new FormData();
-    formData.append('productId', productId);
-    formData.append('productName', productName);
-    formData.append('price', price);
-    formData.append('brand', brand);
-    formData.append('gender', gender);
-    formData.append('productCategory', productCategory);
-    formData.append('description', description);
-
-    $.ajax({
-        url: 'http://34.222.253.72:5000/products/add-product',
-        //url: 'http://localhost:5000/products/add-product',
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            console.log('Success:', response);
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', xhr.responseText);
-            validationMessage("Product adding unsucessfull...!");
-
-        }
-    });
-
-    setTimeout(function() {
+function addVariants(){
+  setTimeout(function() {
     for(let i=1;i<=rowCount;i++){
 
-        let productId_1 = $('#product-id-input').val();
+        let productId_1 = $('#default-search').val();
         let color = $('#color-Select-'+i).val();
         let size = $('#size-Select-'+i).val();
         let quantity = $('#quantity-Select-'+i).val();
@@ -74,10 +21,6 @@ function saveProduct() {
             formData_1.append('size', size);
             formData_1.append('quantity', quantity);
 
-            console.log(productId);
-            console.log(color);
-            console.log(size);
-            console.log(quantity);
 
   
             $.ajax({
@@ -104,9 +47,6 @@ function saveProduct() {
             formData_2.append('colour', color);
             formData_2.append('imageData',  new Blob([byteArray], { type: 'application/octet-stream' }));
 
-            console.log(productId);
-            console.log(color);
-            console.log(byteArray);
 
             
             $.ajax({
@@ -134,15 +74,15 @@ function saveProduct() {
         location.reload();
     }, 3000);
     },5000);
+  
+    }
 
 
- 
-}
-
+    
  
 function successMessageBox(message,description) {
 
-    const productDetailsContainer = document.getElementById('add-product');
+    const productDetailsContainer = document.getElementById('search-form');
 
     const html = `
         <div id="success-message-box" class="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
@@ -168,7 +108,7 @@ function successMessageBox(message,description) {
 
 function warningMessageBox(message,description) {
 
-    const productDetailsContainer = document.getElementById('add-product');
+    const productDetailsContainer = document.getElementById('search-form');
 
     const html = `
                 <div
@@ -207,7 +147,7 @@ function warningMessageBox(message,description) {
 
 function failedMessageBox(message,description) {
 
-    const productDetailsContainer = document.getElementById('add-product');
+    const productDetailsContainer = document.getElementById('search-form');
 
     const html = `
                 <div

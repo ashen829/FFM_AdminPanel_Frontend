@@ -5,7 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Details</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
 </head>
+
+<script src="/src/js/jquery-3.7.1.min.js"></script>
+<script src="../src/js/veiwProduct.js"></script>
+
 
 <body
 x-data="{ page: 'formLayout', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -65,17 +72,16 @@ x-init="
         </form>
           
           <!-- Product details section -->
-          <div id="product-details" class="grid grid-cols-1 gap-4 sm:grid-cols-1">
+          <div id="product-details" class="grid grid-cols-1 gap-2 sm:grid-cols-1">
             <!-- Product information will be dynamically added here -->
           </div>
-          <div class="grid-flow-row justify-center p-8 items-center">
-
-          
+          <div class="flex justify-center items-center p-4">
             <include src="./partials/variants-table.html" />
-
-
-
-        </div>
+      
+            <button onclick="addVariants();" class="bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+              <span>ADD</span>
+            </button>
+          </div>
       </main>
 
   </div>
@@ -173,7 +179,7 @@ x-init="
   
     async function fetchProductData(productId) {
       try {
-        const response = await fetch(`http://34.222.253.72:5000/product/${productId}`);
+        const response = await fetch(`http://34.222.253.72:5000/products/product/${productId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok.');
         }
@@ -201,7 +207,7 @@ x-init="
             </div>
             <div class="xl:w-/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
               <div class="border-b border-gray-200 pb-6">
-                <p class="text-s leading-none text-gray-600 dark:text-gray-300 "> </p>
+                <p class="text-s leading-none text-gray-600 dark:text-gray-300 "> ${productData.brandName} | ${productData.productCategory}</p>
                 <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-3">${productData.productName}</h1>
               </div>
               <div class="py-3 border-b border-gray-200 flex items-center justify-between">
@@ -241,6 +247,8 @@ x-init="
       const productId = document.getElementById('default-search').value;
       displayProductDetails(productId);
     });
+
+ 
   </script>
   
 
