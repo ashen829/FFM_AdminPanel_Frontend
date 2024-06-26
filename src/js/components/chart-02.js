@@ -6,11 +6,11 @@ const chart02 = () => {
     series: [
       {
         name: "Sales",
-        data: [44, 55, 41, 67, 22, 43, 65],
+        data: [0, 0, 0, 0, 0, 0, 0],
       },
       {
         name: "Revenue",
-        data: [13, 23, 20, 8, 13, 27, 15],
+        data: [0, 0, 0, 0, 0,0, 0],
       },
     ],
     colors: ["#3056D3", "#80CAEE"],

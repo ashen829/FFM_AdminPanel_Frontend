@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Measurements</title>
+    <style>
+        /* Add any necessary CSS here */
+    </style>
+</head>
+<body
+x-data="{ page: 'formLayout', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+x-init="
+      darkMode = JSON.parse(localStorage.getItem('darkMode'));
+      $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+:class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
+>
+<include src="./partials/preloader.html"></include>  
+<div class="flex h-screen overflow-hidden">
+    <include src="./partials/sidebar.html"></include>
+
+    <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <include src="./partials/header.html" />
+
+    <main>
+    <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            <!-- Breadcrumb Start -->
+            <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <h2 class="text-title-md2 font-bold text-black dark:text-white">
+                  View Product
+                </h2>
+                <nav>
+                  <ol class="flex items-center gap-2">
+                    <li>
+                      <a class="font-medium" href="index.html">Dashboard /</a>
+                    </li>
+                    <li class="font-medium text-primary">Add Product</li>
+                  </ol>
+                </nav>
+              </div>
+              <!-- Breadcrumb End -->    
+    <div class="p-10">
+    <table id="measurementsTable" class=" bg-white text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs bg-slate-700 rounded p-3 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 text-white  py-3">
+                    Measurement ID<br>
+                    <input type="text" class="filter-input text-slate-600 p-1 mt-2 w-2/3 rounded" placeholder="Filter" data-column="0">
+                </th>
+                <th scope="col" class="px-6 text-white  py-3">
+                    Brand ID<br>
+                    <input type="text" class="filter-input text-slate-600  p-1 mt-2 w-2/3 rounded" placeholder="Filter" data-column="1">
+                </th>
+                <th scope="col" class="px-6 text-white  py-3">
+                    Brand Name<br>
+                    <input type="text" class="filter-input text-slate-600  p-1 mt-2 w-2/3 rounded" placeholder="Filter" data-column="2">
+                </th>
+                <th scope="col" class="px-6 text-white  py-3">
+                    Item<br>
+                    <input type="text" class="filter-input text-slate-600  p-1 mt-2 w-2/3 rounded" placeholder="Filter" data-column="3">
+                </th>
+                <th scope="col" class="px-6 text-white  py-3">
+                    Size<br>
+                    <input type="text" class="filter-input text-slate-600  p-1 mt-2 w-2/3 rounded" placeholder="Filter" data-column="4">
+                </th>
+                <th scope="col" class="px-6 text-white  py-3">
+                    Category<br>
+                    <input type="text" class="filter-input p-1 mt-2 w-2/3 rounded" placeholder="Filter" data-column="5">
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- Table rows will be populated here by JavaScript -->
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>   
+    </main>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('http://54.191.229.94:5000/BrandMeasurement/getAllBrandMeasurements')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('measurementsTable').querySelector('tbody');
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td class="px-6 py-4">${item.measurement_id}</td>
+                    <td class="px-6 py-4">${item.brand.brandId}</td>
+                    <td class="px-6 py-4">${item.brand.brandName}</td>
+                    <td class="px-6 py-4">${item.item}</td>
+                    <td class="px-6 py-4">${item.size}</td>
+                    <td class="px-6 py-4">${item.category}</td>
+                    <td>
+                        <div class="grid-row flex gap-2">
+                            <button type="button" class="px-5 gap-1 py-2 mt-4 text-sm font-medium text-white inline-flex items-center bg-success hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                View
+                            </button>
+                            <button type="button" class="px-5 mr-6 gap-1 py-2 mt-4 text-sm font-medium text-white inline-flex items-center bg-danger hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                </svg>                                 
+                            </button>
+                        </div>                               
+                    </td>
+
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                const filterInputs = document.querySelectorAll('.filter-input');
+
+                filterInputs.forEach(input => {
+                    input.addEventListener('keyup', function() {
+                        const column = this.getAttribute('data-column');
+                        const filterValue = this.value.toLowerCase();
+                        const rows = tableBody.querySelectorAll('tr');
+
+                        rows.forEach(row => {
+                            const cell = row.querySelectorAll('td')[column];
+                            if (cell) {
+                                const cellText = cell.textContent.toLowerCase();
+                                if (cellText.includes(filterValue)) {
+                                    row.style.display = '';
+                                } else {
+                                    row.style.display = 'none';
+                                }
+                            }
+                        });
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+</script>

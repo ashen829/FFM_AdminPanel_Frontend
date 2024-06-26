@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tables</title>
   </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="../src/js/view-brand.js"></script>
 
   <body
     x-data="{ page: 'tables', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -41,9 +43,8 @@
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                Most Selling Brands
+                Brand Details
               </h2>
-
               <nav>
                 <ol class="flex items-center gap-2">
                   <li>
@@ -56,11 +57,14 @@
             <!-- Breadcrumb End -->
 
             <!-- ====== Table Section Start -->
+            <div class="p-3" id="validation-message">
 
+            </div>
               <!-- ====== Table Three Start -->
               <include src="../src/partials/brands.html" />
               <!-- ====== Table Three End -->
-
+              <include src="../src/partials/measurements.html" />
+            
             <!-- ====== Table Section End -->
           </div>
         </main>
@@ -71,3 +75,4 @@
     <!-- ===== Page Wrapper End ===== -->
   </body>
 </html>
+

@@ -1,140 +1,7 @@
 
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <div class="flex items-center p-6 justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-        <label for="default-search" class="sr-only">Search</label>
-        <div class="relative">
-            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-            </div>
-            <form id="search-form" class="relative" onsubmit="event.preventDefault(); displayMeasurementDetails(this.querySelector('#default-search').value);">
-                <input type="text" id="default-search" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for brands">          
-        </div>
-        <button type="submit" class="text-green-700 mt-1 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">Search</button>
-    </form>
-    </div>
-
-    <div id="brand-details" class="relative ">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500  dark:text-gray-400">
-            <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">Brand Logo</th>
-                    <th scope="col" class="px-2 py-3">Name</th>
-                    <th scope="col" class="px-3 py-3">Brand ID</th>
-                    <th scope="col" class="px-3 py-3">Item</th>
-                    <th scope="col" class="px-3 py-3">Gender</th>
-                    <th scope="col" class="px-3 py-3">Size</th>
-                    <th scope="col" class="px-3 py-3">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- This part will be dynamically populated -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="relative overflow-x-auto p-6 mt-6 bg-white shadow-md sm:rounded-lg">
-    <div class="py-3.5 px-5 text-sm text-gray-700 uppercase bg-slate-100 dark:bg-gray-700 dark:text-gray-400">
-        <h><strong>Measurement Details</strong></h>
-    </div>
-    <div class="grid gap-6 p-3 mt-5 mb-6 md:grid-cols-5">
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ankle Circumference :</label>
-            <input type="text" id="ankleCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Arm Length :</label>
-            <input type="text" id="armLength" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bicep Circumference :</label>
-            <input type="text" id="bicepCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calf Circumference :</label>
-            <input type="text" id="calfCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Chest Circumference :</label>
-            <input type="text" id="chestCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Forearm Circumference :</label>
-            <input type="text" id="forearmCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Head Circumference :</label>
-            <input type="text" id="headCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hip Circumference :</label>
-            <input type="text" id="hipCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
-        </div>
-
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Inside Leg Length :</label>
-            <input type="text" id="insideLegLength" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
-        </div>
-
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Neck Circumference :</label>
-            <input type="text" id="neckCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-        </div>
-
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Shoulder Breadth :</label>
-            <input type="text" id="shoulderBreadth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
-        </div>
-
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Shoulder To Crotch :</label>
-            <input type="text" id="shoulderToCrotch" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thigh Circumference :</label>
-            <input type="text" id="thighCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Waist Circumference :</label>
-            <input type="text" id="waistCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wrist Circumference</label>
-            <input type="text" id="wristCircumference" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-        </div>
-
-        <div class="gri-row flex gap-2">
-            <button onclick="updateBrandMeasurement()" type="button" class="px-7 gap-1 py-2.5 mt-4 text-sm font-medium text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                </svg>                  
-                Save
-            </button>
-            <button onclick="deleteMeasurement()" type="button" class="px-7 gap-1 py-2.5 mt-4 text-sm font-medium text-white inline-flex items-center bg-danger hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
-                  </svg>
-                                    
-                Delete
-            </button>
-        </div>
-        <div>
-
-        </div>
-
-
-    </div>
-</div>
-
-
-
-<!-- <script>
     async function fetchProductData(brandId) {
         try {
-            const response = await fetch(`http://localhost:5000/Brand/${brandId}`);
+            const response = await fetch(`http://54.191.229.94:5000/Brand/${brandId}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok.');
             }
@@ -238,9 +105,7 @@
 
         brandDetailsContainer.innerHTML = html;
     }
-</script>
 
-<script>
 async function fetchMeasurementData() {
     try {
         let brandId = $('#product-id-input').text();
@@ -254,7 +119,7 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -284,25 +149,31 @@ async function fetchMeasurementData() {
             document.getElementById('waistCircumference').value = measurementData[0].waistCircumference;
             document.getElementById('wristCircumference').value = measurementData[0].wristCircumference;
         } else {
-            console.log("Measurement data array is empty or undefined.");
+            warningValidationMessage("Measurement data array is empty or undefined.");
+            setTimeout(() => {
+                location.reload();
+            }, 6000);
+            
         }
 
         return measurementData;
     } catch (error) {
-        console.error('Error fetching brand data:', error);
+        warningValidationMessage('Error fetching brand data:', error);
+        setTimeout(() => {
+            location.reload();
+        }, 6000);
+        
     }
 }
 
-</script>
 
-<script>
     async function updateBrandMeasurement() {
         let category = $('#category-Select').val();
         let size = $('#size-Select').val();
         let item = $('#item-Select').val();
         let brandId = $('#product-id-input').text();
         
-        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
 
 
         console.log("Fetch URL:", url);
@@ -358,7 +229,7 @@ async function fetchMeasurementData() {
 
         //Send the PUT request
         try {
-            const response = await fetch(`http://localhost:5000/BrandMeasurement/${measurementId}`, {
+            const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/${measurementId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -367,17 +238,24 @@ async function fetchMeasurementData() {
             });
 
             if (response.ok) {
-                console.log('Measurement data updated successfully');
+                successValidationMessage('Measurement data updated successfully');
+                setTimeout(() => {
+                    location.reload();
+                }, 6000);
             } else {
-                console.error('Failed to update measurement data');
+                warningValidationMessage('Failed to update measurement data');
+                setTimeout(() => {
+                    location.reload();
+                }, 6000);
             }
         } catch (error) {
-            console.error('Error:', error);
+            warningValidationMessage('Error:', error);
+            setTimeout(() => {
+                location.reload();
+            }, 6000);
         }
     }
-</script>
 
-<script>
     async function deleteMeasurement(){
         let brandId = $('#product-id-input').text();
         let category = $('#category-Select').val();
@@ -390,7 +268,7 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -406,7 +284,7 @@ async function fetchMeasurementData() {
         let measurementId = measurementData[0].measurement_id;
 
         try {
-            const response = await fetch(`http://localhost:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
+            const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json'
@@ -414,18 +292,60 @@ async function fetchMeasurementData() {
         });
 
         if (response.ok) {
-            console.log('Measurement data deleted successfully');
+            successValidationMessage('Measurement data deleted successfully');
+            setTimeout(() => {
+                location.reload();
+            }, 6000);
         } else {
-            console.error('Failed to delete measurement data');
+            warningValidationMessage('Failed to delete measurement data');
+            setTimeout(() => {
+                location.reload();
+            }, 6000);
         }
         } catch (error) {
-            console.error('Error:', error);
+            warningValidationMessage('Error:', error);
+            setTimeout(() => {
+                location.reload();
+            }, 6000);
         }
 
 
     }
 
+    function successValidationMessage(message){
+        const productDetailsContainer = document.getElementById('validation-message');
+    
+        const html = `
+            <div class="bg-green-100 border border-green-400 text-green-700 w-400 px-4 py-2 ml-5 mr-5 rounded relative" role="alert">
+                <strong class="font-bold">Done!</strong>
+                <span class="block sm:inline">${message}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>
+            </div>
+        `;
+    
+        productDetailsContainer.innerHTML = html;
+    }
 
-</script> -->
+    function warningValidationMessage(message){
+        const productDetailsContainer = document.getElementById('validation-message');
+    
+        const html = `
+            <div class="bg-red-100 border border-red-400 text-red-700 w-400 px-4 py-2 ml-5 mr-5 rounded relative" role="alert">
+                <strong class="font-bold">Failed!</strong>
+                <span class="block sm:inline">${message}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>
+            </div>
+        `;
+    
+        productDetailsContainer.innerHTML = html;
+    }
+
+
+
+
 
    

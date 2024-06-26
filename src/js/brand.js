@@ -6,7 +6,7 @@ function saveBrand() {
     // Check if all input fields are filled
     if (!brandId || !name || !fileInput.files.length || rowCount==0) {
         console.error("All fields are required.");
-        warningMessageBox("Saving Failed", "The Bran could not be saved because some required fields are missing or incomplete. Please review the form and ensure that all mandatory fields are properly filled out before attempting to save again.");
+        warningMessageBox("Saving Failed", "The Brand could not be saved because some required fields are missing or incomplete. Please review the form and ensure that all mandatory fields are properly filled out before attempting to save again.");
         setTimeout(() => {
             location.reload();
         }, 6000);
@@ -56,7 +56,7 @@ function saveBrand() {
                 brand: {
                     brandId: brandId,
                     name: name,
-                    productMedia: Array.from(byteArray)
+                    productMedia: new Blob([byteArray], { type: 'application/octet-stream' })
                 },
                 ankleCircumference: m1,
                 armLength: m2,
@@ -77,8 +77,8 @@ function saveBrand() {
         }
 
         $.ajax({
-            //url: 'http://localhost:5000/Brand/add-brand',
-            url: 'http://34.222.253.72:5000/Brand/add-brand',
+            url: 'http://localhost:5000/Brand/add-brand',
+            //url: 'http://34.222.253.72:5000/Brand/add-brand',
             type: 'POST',
             
             contentType: 'application/json',
@@ -97,8 +97,8 @@ function saveBrand() {
 
         setTimeout(function() {
                 $.ajax({
-                    //url: 'http://localhost:5000/BrandMeasurement/addBrandMeasurements',
-                    url: 'http://34.222.253.72:5000/BrandMeasurement/addBrandMeasurements',
+                    url: 'http://54.191.229.94:5000/BrandMeasurement/addBrandMeasurements',
+                    //url: 'http://34.222.253.72:5000/BrandMeasurement/addBrandMeasurements',
                     type: 'POST',                 
                     contentType: 'application/json',
                     data: JSON.stringify(measurements),
@@ -118,7 +118,7 @@ function saveBrand() {
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
-        },3000);
+        },6000);
     };
     reader.readAsDataURL(file);      
 }
