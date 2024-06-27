@@ -1,7 +1,8 @@
 
     async function fetchProductData(brandId) {
         try {
-            const response = await fetch(`http://54.191.229.94:5000/Brand/${brandId}`);
+            //const response = await fetch(`http://54.191.229.94:5000/Brand/${brandId}`);
+            const response = await fetch(`http://localhost:5000/Brand/${brandId}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok.');
             }
@@ -9,6 +10,7 @@
             return brandData;
         } catch (error) {
             console.error('Error fetching brand data:', error);
+            warningValidationMessage('Brand Id not found');
         }
     }
 
@@ -119,7 +121,8 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -149,19 +152,12 @@ async function fetchMeasurementData() {
             document.getElementById('waistCircumference').value = measurementData[0].waistCircumference;
             document.getElementById('wristCircumference').value = measurementData[0].wristCircumference;
         } else {
-            warningValidationMessage("Measurement data array is empty or undefined.");
-            setTimeout(() => {
-                location.reload();
-            }, 6000);
-            
+            warningValidationMessage("Measurement data array is empty or undefined.");          
         }
 
         return measurementData;
     } catch (error) {
-        warningValidationMessage('Error fetching brand data:', error);
-        setTimeout(() => {
-            location.reload();
-        }, 6000);
+        warningValidationMessage("Measurement data array is empty or undefined.");
         
     }
 }
@@ -173,7 +169,8 @@ async function fetchMeasurementData() {
         let item = $('#item-Select').val();
         let brandId = $('#product-id-input').text();
         
-        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
 
 
         console.log("Fetch URL:", url);
@@ -229,7 +226,8 @@ async function fetchMeasurementData() {
 
         //Send the PUT request
         try {
-            const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/${measurementId}`, {
+            //const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/${measurementId}`, {
+            const response = await fetch(`http://localhost:5000/BrandMeasurement/${measurementId}`, {    
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -239,20 +237,12 @@ async function fetchMeasurementData() {
 
             if (response.ok) {
                 successValidationMessage('Measurement data updated successfully');
-                setTimeout(() => {
-                    location.reload();
-                }, 6000);
             } else {
                 warningValidationMessage('Failed to update measurement data');
-                setTimeout(() => {
-                    location.reload();
-                }, 6000);
             }
         } catch (error) {
             warningValidationMessage('Error:', error);
-            setTimeout(() => {
-                location.reload();
-            }, 6000);
+
         }
     }
 
@@ -268,7 +258,8 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -284,7 +275,8 @@ async function fetchMeasurementData() {
         let measurementId = measurementData[0].measurement_id;
 
         try {
-            const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
+            //const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
+            const response = await fetch(`http://localhost:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json'
@@ -304,10 +296,94 @@ async function fetchMeasurementData() {
         }
         } catch (error) {
             warningValidationMessage('Error:', error);
-            setTimeout(() => {
-                location.reload();
-            }, 6000);
         }
+
+
+    }
+
+    async function addMeasurement(){
+        let brandId = $('#product-id-input').text();
+        let category = $('#category-Select').val();
+        let size = $('#size-Select').val();
+        let item = $('#item-Select').val();
+
+        console.log("Fetching data with parameters:");
+        console.log("Brand ID:", brandId);
+        console.log("Category:", category);
+        console.log("Size:", size);
+        console.log("Item:", item);
+
+        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        console.log("Fetch URL:", url);
+
+        const response = await fetch(url);
+
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+
+        const measurementData = await response.json();
+        console.log("Measurement Data:", measurementData);
+        let ankleCircumference = document.getElementById('ankleCircumference').value;
+        let armLength = document.getElementById('armLength').value;
+        let bicepCircumference = document.getElementById('bicepCircumference').value;
+        let calfCircumference = document.getElementById('calfCircumference').value;
+        let chestCircumference = document.getElementById('chestCircumference').value;
+        let forearmCircumference = document.getElementById('forearmCircumference').value;
+        let headCircumference = document.getElementById('headCircumference').value;
+        let hipCircumference = document.getElementById('hipCircumference').value;
+        let insideLegLength = document.getElementById('insideLegLength').value;
+
+        let neckCircumference = document.getElementById('neckCircumference').value;
+        let shoulderBreadth = document.getElementById('shoulderBreadth').value;
+        let shoulderToCrotch = document.getElementById('shoulderToCrotch').value;
+        let thighCircumference = document.getElementById('thighCircumference').value;
+
+        let waistCircumference = document.getElementById('waistCircumference').value;
+        let wristCircumference = document.getElementById('wristCircumference').value;
+
+                // Create a JSON object
+        const measurements = {
+                    brandId : brandId,
+                    ankleCircumference : ankleCircumference,
+                    armLength : armLength,
+                    bicepCircumference : bicepCircumference,
+                    calfCircumference : calfCircumference,
+                    chestCircumference : chestCircumference,      
+                    forearmCircumference : forearmCircumference,
+                    headCircumference : headCircumference,
+                    hipCircumference : hipCircumference,
+                    insideLegLength : insideLegLength,
+                    neckCircumference : neckCircumference,
+                    shoulderBreadth : shoulderBreadth,
+                    shoulderToCrotch :shoulderToCrotch,
+                    thighCircumference :thighCircumference,
+                    waistCircumference :waistCircumference,
+                    wristCircumference :wristCircumference
+        };
+        try {
+            
+            const response = await fetch(`http://localhost:5000/BrandMeasurement/addBrandMeasurement/${brandId}`, {    
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(measurements)
+            });
+
+            if (response.ok) {
+                successValidationMessage('Measurement data added successfully');
+            } else {
+                warningValidationMessage('Failed to add measurement data');
+            }
+        } catch (error) {
+            warningValidationMessage('Error:', error);
+
+        }
+
+
 
 
     }
@@ -326,6 +402,9 @@ async function fetchMeasurementData() {
         `;
     
         productDetailsContainer.innerHTML = html;
+        setTimeout(() => {
+            productDetailsContainer.style.display = 'none';
+        }, 5000);
     }
 
     function warningValidationMessage(message){
@@ -342,6 +421,11 @@ async function fetchMeasurementData() {
         `;
     
         productDetailsContainer.innerHTML = html;
+
+        productDetailsContainer.innerHTML = html;
+        setTimeout(() => {
+            productDetailsContainer.style.display = 'none';
+        }, 5000);
     }
 
 

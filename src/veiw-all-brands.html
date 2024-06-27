@@ -88,7 +88,8 @@ x-init="
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        fetch('http://54.191.229.94:5000/BrandMeasurement/getAllBrandMeasurements')
+        //fetch('http://54.191.229.94:5000/BrandMeasurement/getAllBrandMeasurements')
+        fetch('http://localhost:5000/BrandMeasurement/getAllBrandMeasurements')
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.getElementById('measurementsTable').querySelector('tbody');

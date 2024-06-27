@@ -24,8 +24,8 @@ function addVariants(){
 
   
             $.ajax({
-                //url: 'http://34.222.253.72:5000/products/add-product',
-                url: 'http://54.191.229.94:5000/add-product-information',
+                url: 'http://localhost:5000/products/add-product',
+                //url: 'http://54.191.229.94:5000/add-product-information',
                 type: 'PUT',
                 data: formData_1,
                 contentType: false,
@@ -50,8 +50,8 @@ function addVariants(){
 
             
             $.ajax({
-                //url: 'http://34.222.253.72:5000/products/add-product',
-                url: 'http://54.191.229.94:5000/product/product-images/addImage',
+                url: 'http://localhost:5000/products/add-product',
+                //url: 'http://54.191.229.94:5000/product/product-images/addImage',
                 type: 'POST',
                 data: formData_2,
                 contentType: false,

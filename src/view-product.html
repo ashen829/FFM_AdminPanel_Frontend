@@ -177,7 +177,8 @@ x-init="
   
     async function fetchProductData(productId) {
       try {
-        const response = await fetch(`http://54.191.229.94:5000/products/product/${productId}`);
+        //const response = await fetch(`http://54.191.229.94:5000/products/product/${productId}`);
+        const response = await fetch(`http://localhost:5000/products/product/${productId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok.');
         }
