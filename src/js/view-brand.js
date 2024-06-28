@@ -132,8 +132,8 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
-        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        //const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -269,8 +269,8 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
-        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        //const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -286,8 +286,8 @@ async function fetchMeasurementData() {
         let measurementId = measurementData[0].measurement_id;
 
         try {
-            //const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
-            const response = await fetch(`http://localhost:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
+            const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
+            //const response = await fetch(`http://localhost:5000/BrandMeasurement/deleteBrandMeasurement/${measurementId}`, {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json'
@@ -324,8 +324,8 @@ async function fetchMeasurementData() {
         console.log("Size:", size);
         console.log("Item:", item);
 
-        //const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
-        const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        const url = `http://54.191.229.94:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
+        //const url = `http://localhost:5000/BrandMeasurement/${brandId}-${category}-${item}-${size}`;
         console.log("Fetch URL:", url);
 
         const response = await fetch(url);
@@ -380,7 +380,7 @@ async function fetchMeasurementData() {
         console.log(measurements);
         try {
             
-            const response = await fetch(`http://localhost:5000/BrandMeasurement/addBrandMeasurement/${brandId}`, {    
+            const response = await fetch(`http://54.191.229.94:5000/BrandMeasurement/addBrandMeasurement/${brandId}`, {    
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

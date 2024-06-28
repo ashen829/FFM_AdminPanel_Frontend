@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
             statusElement.setAttribute('data-status', newStatus);
         
             // Prepare the PUT request URL
-            const putEndpoint = `http://localhost:5000/orders/${orderId}-${newStatus}`;
-            //const putEndpoint = `http://54.191.229.94:5000/orders/${orderId}-${newStatus}`;
+            //const putEndpoint = `http://localhost:5000/orders/${orderId}-${newStatus}`;
+            const putEndpoint = `http://54.191.229.94:5000/orders/${orderId}-${newStatus}`;
         
             // Send the PUT request
             fetch(putEndpoint, {

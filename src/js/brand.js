@@ -73,8 +73,8 @@ function saveBrand() {
         // }
 
         $.ajax({
-            url: 'http://localhost:5000/Brand/add-brand',
-            //url: 'http://34.222.253.72:5000/Brand/add-brand',
+            //url: 'http://localhost:5000/Brand/add-brand',
+            url: 'http://34.222.253.72:5000/Brand/add-brand',
             type: 'POST',
             
             contentType: 'application/json',
