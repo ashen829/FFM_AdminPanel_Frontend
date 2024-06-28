@@ -32,18 +32,30 @@
                         <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
                               <select id="item-Select" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
                                 <option value="" class="text-body">Select Item</option>
-                                <option value="T-Shirt" class="text-body">T-Shirt</option>
-                                <option value="Shirt" class="text-body">Shirt</option>
-                                <option value="Short" class="text-body">Short</option>
-                                <option value="Denim" class="text-body">Denim</option>
-                                <option value="Bottom" class="text-body">Bottom</option>
-                                <option value="Tops & T-Shirts" class="text-body">Tops & T-Shirts</option>
-                                <option value="Party Frock" class="text-body">Party Frock</option>
-                                <option value="Jeans" class="text-body">Jeans</option>
-                                <option value="Blouse" class="text-body">Blouse</option>
-                                <option value="Night Dress" class="text-body">Night Dress</option>
-                                <option value="Jacket" class="text-body">Jacket</option>
-                                <option value="Dresses" class="text-body">Dresses</option>
+                                    <option value="Tops" class="text-body">Top</option>
+                                    <option value="Dresses" class="text-body">Dresse</option>
+                                    <option value="Denims" class="text-body">Denim</option>
+                                    <option value="Work Wear" class="text-body">Work Wear</option>
+                                    <option value="Casuals" class="text-body">Casuals</option>
+                                    <option value="Pants" class="text-body">Pants</option>
+                                    <option value="Linen" class="text-body">Linen</option>
+                                    <option value="Premium Dresses" class="text-body">Premium Dresses</option>
+                                    <option value="Active Wear" class="text-body">Active Wear</option>
+                                    <option value="Shorts" class="text-body">Shorts</option>
+                                    <option value="T Shirts" class="text-body">T Shirt</option>
+                                    <option value="Blouses" class="text-body">Blouse</option>
+                                    <option value="Crop Tops" class="text-body">Crop Tops</option>
+                                    <option value="Skirts" class="text-body">Skirt</option>
+
+                                    <option value="Dress Shirts" class="text-body">Dress Shirts</option>
+                                    <option value="Jackets" class="text-body">Jackets</option>
+                                    <option value="Jeans" class="text-body">Jeans</option>
+                                    <option value="Hell" class="text-body">Hell</option>
+                                    <option value="Vests" class="text-body">Vests</option>
+                                    <option value="Kilts" class="text-body">Kilts</option>
+                                    <option value="Outdoors" class="text-body">Outdoors</option>
+                                    <option value="Capes" class="text-body">Capes</option>
+
                               </select>
                               <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
                                 <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,8 +76,6 @@
                                 <option value="Women" class="text-body">Women</option>
                                 <option value="Kids" class="text-body">Kids</option>
                                 <option value="Unisex" class="text-body">Unisex</option>
-                                <option value="Sport" class="text-body">Sport</option>
-                                <option value="Footwear" class="text-body">Footwear</option>
                               </select>
                               <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
                                 <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,11 +92,12 @@
                         <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
                               <select id="size-Select" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
                                 <option value="" class="text-body">Select Size</option>
-                                <option value="Extra Small" class="text-body">Extra Small</option>
-                                <option value="Small" class="text-body">Small</option>
-                                <option value="Medium" class="text-body">Medium</option>
-                                <option value="Large" class="text-body">Large</option>
-                                <option value="XXL" class="text-body">XXL</option>
+                                    <option value="XS" class="text-body">XS</option>
+                                    <option value="S" class="text-body">S</option>
+                                    <option value="M" class="text-body">M</option>
+                                    <option value="L" class="text-body">L</option>
+                                    <option value="XXL" class="text-body">XXL</option>
+                                    <option value="XXXL" class="text-body">XXXL</option>
                               </select>
                                 <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
                                   <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -361,8 +372,12 @@ async function fetchMeasurementData() {
                     shoulderToCrotch :shoulderToCrotch,
                     thighCircumference :thighCircumference,
                     waistCircumference :waistCircumference,
-                    wristCircumference :wristCircumference
+                    wristCircumference :wristCircumference,
+                    category:category,
+                    size:size,
+                    item:item
         };
+        console.log(measurements);
         try {
             
             const response = await fetch(`http://localhost:5000/BrandMeasurement/addBrandMeasurement/${brandId}`, {    
@@ -375,6 +390,10 @@ async function fetchMeasurementData() {
 
             if (response.ok) {
                 successValidationMessage('Measurement data added successfully');
+                alert("Measurement data added successfully");
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
             } else {
                 warningValidationMessage('Failed to add measurement data');
             }

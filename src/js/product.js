@@ -25,6 +25,14 @@ function saveProduct() {
         return;
     }
 
+    console.log(productId);
+    console.log(productName);
+    console.log(price);
+    console.log(brand);
+    console.log(gender);
+    console.log(productCategory);
+    console.log(description);
+
 
     let formData = new FormData();
     formData.append('productId', productId);
@@ -81,7 +89,7 @@ function saveProduct() {
 
   
             $.ajax({
-                url: 'http://localhost:5000/products/add-product',
+                url: 'http://localhost:5000/add-product-information',
                 //url: 'http://54.191.229.94:5000/add-product-information',
                 type: 'PUT',
                 data: formData_1,
@@ -110,7 +118,7 @@ function saveProduct() {
 
             
             $.ajax({
-                url: 'http://localhost:5000/products/add-product',
+                url: 'http://localhost:5000/product/product-images/addImage',
                 //url: 'http://54.191.229.94:5000/product/product-images/addImage',
                 type: 'POST',
                 data: formData_2,
@@ -134,9 +142,6 @@ function saveProduct() {
         location.reload();
     }, 3000);
     },5000);
-
-
- 
 }
 
  

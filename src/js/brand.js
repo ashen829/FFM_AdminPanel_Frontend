@@ -4,18 +4,14 @@ function saveBrand() {
     let fileInput = $('#dropzone-file')[0];
 
     // Check if all input fields are filled
-    if (!brandId || !name || !fileInput.files.length || rowCount==0) {
+    if (!brandId || !name || !fileInput.files.length) {
         console.error("All fields are required.");
-        warningMessageBox("Saving Failed", "The Brand could not be saved because some required fields are missing or incomplete. Please review the form and ensure that all mandatory fields are properly filled out before attempting to save again.");
-        setTimeout(() => {
-            location.reload();
-        }, 6000);
-        
+        warningMessageBox("Saving Failed", "The Brand could not be saved because some required fields are missing or incomplete. Please review the form and ensure that all mandatory fields are properly filled out before attempting to save again.");  
         return;
     }
 
     let measurements = [];
-    console.log(rowCount);
+    
 
     let file = fileInput.files[0];
     let reader = new FileReader();
@@ -30,51 +26,51 @@ function saveBrand() {
             productMedia: Array.from(byteArray)
         };
 
-        for (let i = 1; i <= rowCount; i++) {
-            let category = document.getElementById('category-Select-'+i).value;
-            let size = document.getElementById('size-Select-'+i).value;
-            let item = document.getElementById('item-Select-'+i).value;
-            let m1 = $('#m1-input-'+i).val();
-            let m2 = $('#m2-input-'+i).val();
-            let m3 = $('#m3-input-'+i).val();
-            let m4 = $('#m4-input-'+i).val();
-            let m5 = $('#m5-input-'+i).val();
-            let m6 = $('#m6-input-'+i).val();
-            let m7 = $('#m7-input-'+i).val();
-            let m8 = $('#m8-input-'+i).val();
-            let m9 = $('#m9-input-'+i).val();
-            let m10 = $('#m10-input-'+i).val();
-            let m11 = $('#m11-input-'+i).val();
-            let m12 = $('#m12-input-'+i).val();
-            let m13 = $('#m13-input-'+i).val();
-            let m14 = $('#m14-input-'+i).val();
+        // for (let i = 1; i <= rowCount; i++) {
+        //     let category = document.getElementById('category-Select-'+i).value;
+        //     let size = document.getElementById('size-Select-'+i).value;
+        //     let item = document.getElementById('item-Select-'+i).value;
+        //     let m1 = $('#m1-input-'+i).val();
+        //     let m2 = $('#m2-input-'+i).val();
+        //     let m3 = $('#m3-input-'+i).val();
+        //     let m4 = $('#m4-input-'+i).val();
+        //     let m5 = $('#m5-input-'+i).val();
+        //     let m6 = $('#m6-input-'+i).val();
+        //     let m7 = $('#m7-input-'+i).val();
+        //     let m8 = $('#m8-input-'+i).val();
+        //     let m9 = $('#m9-input-'+i).val();
+        //     let m10 = $('#m10-input-'+i).val();
+        //     let m11 = $('#m11-input-'+i).val();
+        //     let m12 = $('#m12-input-'+i).val();
+        //     let m13 = $('#m13-input-'+i).val();
+        //     let m14 = $('#m14-input-'+i).val();
 
-            let brandMeasurementData = {
-                category: category,
-                size: size,
-                item: item,
-                brand: {
-                    brandId: brandId,
-                    name: name,
-                    productMedia: new Blob([byteArray], { type: 'application/octet-stream' })
-                },
-                ankleCircumference: m1,
-                armLength: m2,
-                bicepCircumference: m3,
-                calfCircumference: m4,
-                chestCircumference: m5,
-                forearmCircumference: m6,
-                headCircumference: m7,
-                hipCircumference: m8,
-                insideLegLength: m9,
-                neckCircumference: m10,
-                shoulderBreadth: m11,
-                shoulderToCrotch : m12,
-                thighCircumference: m13,
-                waistCircumference: m14
-            }
-            measurements.push(brandMeasurementData);
-        }
+        //     let brandMeasurementData = {
+        //         category: category,
+        //         size: size,
+        //         item: item,
+        //         brand: {
+        //             brandId: brandId,
+        //             name: name,
+        //             productMedia: new Blob([byteArray], { type: 'application/octet-stream' })
+        //         },
+        //         ankleCircumference: m1,
+        //         armLength: m2,
+        //         bicepCircumference: m3,
+        //         calfCircumference: m4,
+        //         chestCircumference: m5,
+        //         forearmCircumference: m6,
+        //         headCircumference: m7,
+        //         hipCircumference: m8,
+        //         insideLegLength: m9,
+        //         neckCircumference: m10,
+        //         shoulderBreadth: m11,
+        //         shoulderToCrotch : m12,
+        //         thighCircumference: m13,
+        //         waistCircumference: m14
+        //     }
+        //     measurements.push(brandMeasurementData);
+        // }
 
         $.ajax({
             url: 'http://localhost:5000/Brand/add-brand',
@@ -89,38 +85,32 @@ function saveBrand() {
             error: function(error) {
                 console.error("Error saving brand:", error);
                 validationMessage("Brand saving unsucessfull...!");
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
+
             }
         });
 
-        setTimeout(function() {
-                $.ajax({
-                    //url: 'http://54.191.229.94:5000/BrandMeasurement/addBrandMeasurements',
-                    url: 'http://localhost:5000/BrandMeasurement/addBrandMeasurements',
-                    type: 'POST',                 
-                    contentType: 'application/json',
-                    data: JSON.stringify(measurements),
-                    success: function(response) {
-                        console.log("Brand Measurement saved successfully:", response);
+        // setTimeout(function() {
+        //         $.ajax({
+        //             //url: 'http://54.191.229.94:5000/BrandMeasurement/addBrandMeasurements',
+        //             url: 'http://localhost:5000/BrandMeasurement/addBrandMeasurements',
+        //             type: 'POST',                 
+        //             contentType: 'application/json',
+        //             data: JSON.stringify(measurements),
+        //             success: function(response) {
+        //                 console.log("Brand Measurement saved successfully:", response);
                         
-                    },
-                    error: function(error) {
-                        console.error("Error saving brand measurement:", error);
-                        validationMessage("Brand Measurement adding unsucessfull...!");
-                        setTimeout(() => {
-                            location.reload();
-                        }, 3000);
-                    }
-                });
-                successMessageBox("Saving Successful", "The product has been successfully saved. All required fields were filled out correctly, and your data has been securely stored. Thank you for your attention to detail.");
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
-        },6000);
+        //             },
+        //             error: function(error) {
+        //                 console.error("Error saving brand measurement:", error);
+        //                 validationMessage("Brand Measurement adding unsucessfull...!");
+        //             }
+        //         });
+        //         successMessageBox("Saving Successful", "The product has been successfully saved. All required fields were filled out correctly, and your data has been securely stored. Thank you for your attention to detail.");
+
+        // },6000);
     };
-    reader.readAsDataURL(file);      
+    reader.readAsDataURL(file);   
+    successMessageBox("Saved!", "Brand saved Successfully. Now you can add brand measurements from view brand page. ")   
 }
 
 function successMessageBox(message,description) {

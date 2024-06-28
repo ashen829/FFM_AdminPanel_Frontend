@@ -230,6 +230,13 @@
             <option value="White" class="text-body">White</option>
             <option value="Black" class="text-body">Black</option>
             <option value="Yellow" class="text-body">Yellow</option>
+            <option value="Multi Color" class="text-body">Multi Color</option>
+            <option value="Green" class="text-body">Green</option>
+            <option value="Orange" class="text-body">Orange</option>
+            <option value="Grey" class="text-body">Grey</option>
+            <option value="Pink" class="text-body">Pink</option>
+            <option value="Cream" class="text-body">Cream</option>
+
           </select>
           <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
             <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -245,11 +252,12 @@
         <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
           <select id="size-Select-${rowCount}"class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-2.5 pr-10 py-1.5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
             <option value="" class="text-body">Select Size</option>
-            <option value="S" class="text-body">Small</option>
-            <option value="M" class="text-body">Medium</option>
-            <option value="L" class="text-body">Large</option>
-            <option value="XXL" class="text-body">2XL</option>
-            <option value="4XL" class="text-body">4XL</option>
+                                    <option value="XS" class="text-body">XS</option>
+                                    <option value="S" class="text-body">S</option>
+                                    <option value="M" class="text-body">M</option>
+                                    <option value="L" class="text-body">L</option>
+                                    <option value="XXL" class="text-body">XXL</option>
+                                    <option value="XXXL" class="text-body">XXXL</option>
 
           </select>
           <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
